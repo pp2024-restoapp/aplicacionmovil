@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MenuStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Personaliza el color de fondo del menú -->
+        <item name="android:popupMenuStyle">@color/white</item>
+        <item name="android:amPmBackgroundColor">@color/white</item>
+
+        <!-- Personaliza el color del texto de los elementos del menú -->
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+
+
+
+</resources>

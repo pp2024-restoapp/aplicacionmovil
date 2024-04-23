@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#DDDD" /> <!-- Color de fondo de la caja de texto -->
+    <corners android:radius="8dp" />   <!-- Radio de las esquinas redondeadas en dp -->
+</shape>

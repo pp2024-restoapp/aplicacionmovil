@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/page_inicio">
+
+    <fragment
+        android:id="@+id/page_inicio"
+        android:name="com.example.restoapp.InicioFragment"
+        tools:layout="@layout/fragment_inicio"/>
+
+    <fragment
+        android:id="@+id/page_reservas"
+        android:name="com.example.restoapp.ReservasFragment"
+        tools:layout="@layout/fragment_reservas"/>
+
+    <fragment
+        android:id="@+id/page_perfil"
+        android:name="com.example.restoapp.ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+
+</navigation>

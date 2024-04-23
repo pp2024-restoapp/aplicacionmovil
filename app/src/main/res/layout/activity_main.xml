@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#C8BABA"
+    android:backgroundTint="#DFDCDC"
+    android:layout_height="match_parent"    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/IngresaATuCuentaLinkText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="@string/registrate"
+        android:textColor="#616161"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iniciarSesionTextView" />
+
+
+    <TextView
+        android:id="@+id/iniciarSesionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="141dp"
+        android:fontFamily="@font/libre_baskerville_bold"
+        android:text="@string/crea_cuenta"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/IngresaATuCuentaLinkText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nombreEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="28dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="name"
+        android:background="@drawable/edittext_rounded_bg"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/nombre"
+        android:inputType="text"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IngresaATuCuentaLinkText" />
+
+    <EditText
+        android:id="@+id/apellidoEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_rounded_bg"
+        android:ems="10"
+        android:autofillHints="name"
+        android:hint="@string/apellido"
+        android:inputType="text"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreEditText"
+        android:enabled="true"/>
+
+    <EditText
+        android:id="@+id/dniEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/edittext_rounded_bg"
+        android:ems="10"
+        android:hint="@string/dni"
+        android:autofillHints="creditCardNumber"
+        android:inputType="text"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apellidoEditText"
+        android:enabled="true"/>
+
+    <EditText
+        android:id="@+id/correoEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+
+        android:layout_marginVertical="10dp"
+
+        android:background="@drawable/edittext_rounded_bg"
+        android:ems="10"
+        android:hint="@string/correo"
+        android:autofillHints="emailAddress"
+        android:inputType="text"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dniEditText" />
+
+    <EditText
+        android:id="@+id/contrasenaEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/edittext_rounded_bg"
+        android:ems="10"
+        android:hint="@string/contrasena"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/correoEditText" />
+
+    <EditText
+        android:id="@+id/contrasenaConfirmaEditText"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/edittext_rounded_bg"
+        android:ems="10"
+        android:hint="@string/repita_contrasena"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contrasenaEditText" />
+
+    <Button
+        android:id="@+id/IngresarBtn"
+        android:layout_width="137dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="160dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="registrarUsuario"
+        android:text="@string/unirme"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contrasenaConfirmaEditText" />
+
+    <TextView
+        android:id="@+id/noTienesCuentaLinkText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/ya_tienes_cuenta"
+        android:textColor="#616161"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IngresarBtn" />
+
+    <Button
+        android:id="@+id/registrarBtn"
+        android:layout_width="137dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="160dp"
+        android:background="@drawable/rounded_button_2"
+        android:fontFamily="@font/roboto_bold"
+        android:onClick="irALogin"
+        android:text="@string/iniciar_sesion"
+        android:textAllCaps="false"
+        android:textColor="@color/principal_naranja"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noTienesCuentaLinkText"
+        tools:ignore="TextSizeCheck" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

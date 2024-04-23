@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_redes">
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="201dp"
+        android:layout_height="36dp"
+        android:text="@string/medios_pago"
+        android:textColor="#131111"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/btnEnviarComentario"
+        android:layout_width="300dp"
+        android:layout_height="57dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#CE5B37"
+        android:text="@string/enviar_comentario"
+        android:textColor="#FEFEFE"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnOpenFacebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.945" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="364dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/round_text"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSelectFile"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.595"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView6"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="337dp"
+        android:layout_height="37dp"
+        android:text="Añade una foto - Opcional"
+        android:textColor="#131010"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
+    <EditText
+        android:id="@+id/editTextComentario"
+        android:layout_width="370dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="116dp"
+        android:autofillHints=""
+        android:background="@drawable/round_text"
+        android:backgroundTint="#DDDDDD"
+        android:ems="10"
+        android:hint="@string/tu_comentario"
+        android:inputType="text"
+        android:minLines="2"
+        android:textAlignment="center"
+        android:textColor="#575353"
+        android:textDirection="firstStrongRtl"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSelectFile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="250dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/dejar_comentario"
+        android:textColor="#151212"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextComentario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/btnSelectFile"
+        android:layout_width="43dp"
+        android:layout_height="46dp"
+        android:contentDescription="@string/seleccionar_archivo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSelectFoto"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.648"
+        app:srcCompat="@drawable/adjuntar_img" />
+
+    <ImageButton
+        android:id="@+id/btnSelectFoto"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:contentDescription="@string/selecciona_foto"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEnviarComentario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.851"
+        app:srcCompat="@drawable/foto_img"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/btnOpenFacebook"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="85dp"
+        android:contentDescription="@string/abrir_facebook"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnOpenInstagram"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.889"
+        app:srcCompat="@drawable/face" />
+
+    <ImageButton
+        android:id="@+id/btnOpenInstagram"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="82dp"
+        android:contentDescription="@string/abrir_instagram"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnOpenWhatsApp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.889"
+        app:srcCompat="@drawable/instagram" />
+
+    <ImageButton
+        android:id="@+id/btnOpenWhatsApp"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="78dp"
+        android:contentDescription="@string/abrir_whatsApp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton10"
+        app:layout_constraintHorizontal_bias="0.991"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.889"
+        app:srcCompat="@drawable/whasapp" />
+
+    <ImageButton
+        android:id="@+id/imageButton10"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:contentDescription="@string/abrir_in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.889"
+        app:srcCompat="@drawable/in" />
+
+    <ImageButton
+        android:id="@+id/imageButton14"
+        android:layout_width="30dp"
+        android:layout_height="33dp"
+        android:contentDescription="@string/volver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
+        app:srcCompat="@drawable/volver" />
+
+    <ImageButton
+        android:id="@+id/imageButton16"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/abrir_visa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.981"
+        app:srcCompat="@drawable/visa" />
+
+    <ImageButton
+        android:id="@+id/imageButton18"
+        android:layout_width="46dp"
+        android:layout_height="42dp"
+        android:contentDescription="@string/abrir_master"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@drawable/master" />
+
+    <ImageButton
+        android:id="@+id/imageButton19"
+        android:layout_width="38dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/abrir_mercadopago"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973"
+        app:srcCompat="@drawable/mercado" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contacto"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/imageButton14"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true">
+
+    <!-- dialog_add_reservation.xml -->
+
+    <RelativeLayout
+        android:id="@+id/dialogLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="489dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <!-- Contenido del diálogo -->
+
+        <TextView
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="12dp"
+            android:gravity="top"
+            android:text="@string/btn_close"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
+            app:layout_constraintEnd_toStartOf="@+id/title_create_reserve"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:id="@+id/title_create_reserve"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="109dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="108dp"
+            android:fontFamily="@font/libre_baskerville_bold"
+            android:text="@string/title_create_reservation"
+            android:textAlignment="center"
+            android:textColor="#040C22"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <ScrollView
+            android:id= "@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="411dp"
+                android:layout_above="@+id/botonConfirmarReserva"
+                android:layout_below="@+id/title_create_reserve"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                tools:ignore="NotSibling">
+
+                <Button
+                    android:id="@+id/dateTimeButton"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button_2"
+                    android:text="@string/choose_date"
+                    android:textColor="@color/principal_naranja"
+                    android:textStyle="bold"
+                    android:onClick="showDatePickerDialog"/>
+
+                <Button
+                    android:id="@+id/number_of_people"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded_button_2"
+                    android:text="@string/number_of_people"
+                    android:textColor="@color/principal_naranja"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/numberOfPeopleEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa un número"
+                    android:inputType="number"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/typeOfReservation"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button_2"
+                    android:text="@string/type_of_reservation"
+                    android:textColor="@color/principal_naranja"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/typeOfReservationSpinner"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:dropDownWidth="300dp"
+                    android:minHeight="48dp"
+                    android:scrollbarFadeDuration="400"
+                    android:textAlignment="center"
+                    android:visibility="gone" />
+
+
+                <Button
+                    android:id="@+id/select_table"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded_button_2"
+                    android:text="@string/select_table"
+                    android:textColor="@color/principal_naranja"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/selectTableEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingresa un número"
+                    android:inputType="number"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/reservation_comment"
+                    android:layout_width="300dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="16dp"
+                    android:autofillHints=""
+                    android:background="@drawable/round_text"
+                    android:backgroundTint="#f2f2f2"
+                    android:elevation="10dp"
+                    android:gravity="top"
+                    android:hint="@string/reservation_comment"
+                    android:inputType="text"
+                    android:minLines="2"
+                    android:padding="8dp"
+                    android:shadowColor="#52000000"
+                    android:textColor="#575353"
+                    android:textDirection="firstStrongRtl"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@id/botonConfirmarReserva"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="LabelFor" />
+
+                <Button
+                    android:id="@+id/botonConfirmarReserva"
+                    android:layout_width="178dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/confirm_button"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    tools:ignore="NotSibling,TextContrastCheck" />
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
