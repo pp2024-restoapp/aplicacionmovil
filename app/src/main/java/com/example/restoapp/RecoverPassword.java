@@ -9,7 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class RecoverPassword extends AppCompatActivity {
 
@@ -31,7 +39,7 @@ public class RecoverPassword extends AppCompatActivity {
             }
         });
 
-        // Agregando la parte del TextView para regresar a la actividad LoginActivity
+
         TextView tvReturn = findViewById(R.id.tvReturn);
         tvReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,11 +58,41 @@ public class RecoverPassword extends AppCompatActivity {
             return;
         }
 
-        // Aquí puedes agregar el código para enviar la solicitud de recuperación de contraseña.
-        // Ejemplo: enviar una solicitud a tu servidor o usar Firebase Authentication
 
-        // Mostrar un mensaje de confirmación
-        Toast.makeText(this, "Se han enviado las instrucciones a tu correo electrónico", Toast.LENGTH_LONG).show();
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        Toast.makeText(RecoverPassword.this, "Se ha enviado un correo electrónico de restablecimiento de contraseña", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        if (e instanceof FirebaseAuthInvalidUserException) {
+
+                            Toast.makeText(RecoverPassword.this, "El correo electrónico no está registrado en nuestra base de datos", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            Toast.makeText(RecoverPassword.this, "Error al enviar el correo electrónico de restablecimiento de contraseña: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(RecoverPassword.this, "Se ha enviado un correo electrónico de restablecimiento de contraseña", Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            Toast.makeText(RecoverPassword.this, "Error al enviar el correo electrónico de restablecimiento de contraseña", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
-
