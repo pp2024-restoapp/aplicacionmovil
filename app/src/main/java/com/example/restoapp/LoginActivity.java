@@ -75,6 +75,16 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        Button olvidasteLinkText = findViewById(R.id.olvidasteLinkText);
+        olvidasteLinkText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(LoginActivity.this, RecoverPassword.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
