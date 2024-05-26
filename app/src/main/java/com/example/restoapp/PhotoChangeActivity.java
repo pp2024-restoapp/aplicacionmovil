@@ -123,6 +123,16 @@ public class PhotoChangeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btn_atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(PhotoChangeActivity.this, ProfileFragment.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
