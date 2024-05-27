@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Reservation {
     private int id;
+
+    private String userUid;
     private int number_of_people;
     private String dateAndTime;
     private Date created;
@@ -12,7 +14,7 @@ public class Reservation {
     private String observations;
     private String status;
 
-    public Reservation(int id, int number_of_people, String dateAndTime,  Date created, String type, int table, String observations, String status) {
+    public Reservation(int id, String userUid, int number_of_people, String dateAndTime,  Date created, String type, int table, String observations, String status) {
         this.id = id;
         this.number_of_people = number_of_people;
         this.dateAndTime = dateAndTime;
@@ -25,10 +27,15 @@ public class Reservation {
         this.table = table;
         this.observations = observations;
         this.status = status;
+        this.userUid = userUid;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getUserUid(){
+        return userUid;
     }
 
     public void setId(int id) {
