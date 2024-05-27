@@ -22,6 +22,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.restoapp.controladores.ReservationBD;
 import com.example.restoapp.modelos.Reservation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +33,7 @@ import java.util.List;
 public class ReservasFragment extends Fragment implements DatePickerFragment.DateSelectionListener, TimePickerFragment.TimeSelectionListener, ReservationAdapter.Listener {
     private ListView listView;
     private ArrayList<Integer> idReserve;
+    private String userUid;
     private ReservationBD reservationBD;
     private Context context;
     private int selectedYear;
@@ -45,16 +48,31 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        reservationBD = new ReservationBD(context);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            userUid = currentUser.getUid();
+        } else {
+            // El usuario no está autenticado, maneja este caso según lo necesites
+            // Por ejemplo, redirecciona a la pantalla de inicio de sesión
+        }
+        reservationBD = new ReservationBD(context, userUid);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = requireContext();
-        reservationBD = new ReservationBD(context);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            userUid = currentUser.getUid();
+        } else {
+            // El usuario no está autenticado, maneja este caso según lo necesites
+            // Por ejemplo, redirecciona a la pantalla de inicio de sesión
+        }
+        reservationBD = new ReservationBD(context, userUid);
         reservationList = new ArrayList<>();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -258,7 +276,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
                 String dateAndTime = String.format("%04d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
 
                 Date createdDate = new Date();
-                Reservation newReservation = new Reservation(0, numberOfPeople, dateAndTime, createdDate,
+                Reservation newReservation = new Reservation(0, userUid, numberOfPeople, dateAndTime, createdDate,
                         typeOfReservation, selectedTable, observacion, "Pendiente");
 
                 reservationBD.agregar(newReservation);

@@ -13,6 +13,8 @@
 
     import com.example.restoapp.controladores.ReservationBD;
     import com.example.restoapp.modelos.Reservation;
+    import com.google.firebase.auth.FirebaseAuth;
+    import com.google.firebase.auth.FirebaseUser;
 
     import java.text.SimpleDateFormat;
     import java.util.Date;
@@ -21,6 +23,7 @@
     public class ReservationAdapter extends ArrayAdapter<Reservation> {
         private int layoutResourceId;
         private ReservationBD reservationBD;
+        private String userUid;
         private Listener listener; // Listener para notificar eventos
 
         public interface Listener {
@@ -30,7 +33,15 @@
         public ReservationAdapter(Context context, int layoutResourceId, List<Reservation> data) {
             super(context, layoutResourceId, data);
             this.layoutResourceId = layoutResourceId;
-            this.reservationBD = new ReservationBD(context);
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+            if (currentUser != null) {
+                userUid = currentUser.getUid();
+            } else {
+                // El usuario no está autenticado, maneja este caso según lo necesites
+                // Por ejemplo, redirecciona a la pantalla de inicio de sesión
+            }
+            reservationBD = new ReservationBD(context, userUid);
         }
 
         // Método para establecer el listener

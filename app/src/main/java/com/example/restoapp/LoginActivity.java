@@ -53,10 +53,12 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         FirebaseUser user = mAuth.getCurrentUser();
+                                        assert user != null;
+                                        String uid = user.getUid(); // Obtiene el UID del usuario
                                         Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
-                                        // Redirigir al usuario a la actividad principal o a donde necesites
                                         Intent intent = new Intent(LoginActivity.this, DishesActivity.class);
+                                        intent.putExtra("USER_UID", uid); // Pasa el UID a la siguiente actividad
                                         startActivity(intent);
                                     } else {
                                         Toast.makeText(LoginActivity.this, "Error en el inicio de sesión: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
