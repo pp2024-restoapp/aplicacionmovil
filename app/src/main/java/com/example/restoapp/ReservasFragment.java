@@ -125,7 +125,14 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_add_reservation);
-
+        TextView btnClose = dialog.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ReservasFragment", "Close button clicked");
+                dialog.dismiss();
+            }
+        });
         Button selectDateTimeButton = dialog.findViewById(R.id.dateTimeButton);
 
         selectDateTimeButton.setOnClickListener(new View.OnClickListener() {
@@ -262,13 +269,8 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
 
 
 
-        TextView btnClose = dialog.findViewById(R.id.btnClose);
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+
+
 
         dialog.show();
     }
