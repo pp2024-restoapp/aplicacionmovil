@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:fontFamily="@font/libre_baskerville_bold"
+        android:fontFamily="@font/poetsenone_regular"
         android:text="@string/mi_perfil"
         android:textColor="#2C2C2C"
         android:textSize="34sp"
@@ -28,7 +28,7 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/poetsenone_regular"
         android:text="@string/actualiza_info_perfil"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +48,7 @@
 
     <Button
         android:id="@+id/change_image_button"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="142dp"
         android:layout_height="48dp"
         android:layout_marginVertical="8dp"
@@ -64,6 +65,7 @@
 
     <TextView
         android:id="@+id/textViewName2"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -78,6 +80,7 @@
 
     <EditText
         android:id="@+id/editTextText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="339dp"
         android:layout_height="48dp"
         android:autofillHints="name"
@@ -93,6 +96,7 @@
 
     <EditText
         android:id="@+id/editTextText2"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="339dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
@@ -113,7 +117,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/rounded_button_2"
         android:backgroundTint="#F16333"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/poetsenone_regular"
         android:text="@string/actualizar"
         android:textAllCaps="false"
         android:textColor="#F9F9F9"
@@ -128,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_button_2"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/poetsenone_regular"
         android:text="@string/cerrar_sesion"
         android:textAllCaps="false"
         android:textColor="#F16333"

@@ -9,6 +9,7 @@
 
     <Button
         android:id="@+id/confirmarBtn"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="192dp"
         android:layout_height="48dp"
         android:background="@drawable/rounded_button_2"
@@ -150,6 +151,7 @@
 
     <TextView
         android:id="@+id/textView14"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="289dp"
         android:layout_height="41dp"
         android:text="@string/cambiar_foto_de_perfil"
@@ -194,6 +196,7 @@
 
     <TextView
         android:id="@+id/textView13"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="102dp"
         android:layout_height="64dp"
         android:layout_marginStart="44dp"
@@ -201,7 +204,7 @@
         android:textColor="#0C0D0D"
         android:textSize="14sp"
         android:textStyle="bold"
-
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
