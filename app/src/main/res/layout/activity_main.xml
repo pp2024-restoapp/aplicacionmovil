@@ -9,6 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:background="#C8BABA"
     android:backgroundTint="#DFDCDC"
     android:layout_height="match_parent"    tools:context=".MainActivity">
@@ -17,7 +18,7 @@
         android:id="@+id/IngresaATuCuentaLinkText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/poetsenone_regular"
         android:text="@string/registrate"
         android:textColor="#616161"
         android:textSize="16sp"
@@ -33,7 +34,7 @@
         android:layout_marginStart="110dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="141dp"
-        android:fontFamily="@font/libre_baskerville_bold"
+        android:fontFamily="@font/poetsenone_regular"
         android:text="@string/crea_cuenta"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
@@ -45,6 +46,7 @@
 
     <EditText
         android:id="@+id/nombreEditText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginHorizontal="28dp"
@@ -63,6 +65,7 @@
 
     <EditText
         android:id="@+id/apellidoEditText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -79,6 +82,7 @@
 
     <EditText
         android:id="@+id/dniEditText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginVertical="10dp"
@@ -95,6 +99,7 @@
 
     <EditText
         android:id="@+id/correoEditText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="300dp"
         android:layout_height="48dp"
 
@@ -112,6 +117,7 @@
 
     <EditText
         android:id="@+id/contrasenaEditText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginVertical="10dp"
@@ -127,6 +133,7 @@
 
     <EditText
         android:id="@+id/contrasenaConfirmaEditText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginVertical="10dp"
@@ -148,7 +155,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="160dp"
         android:background="@drawable/rounded_button"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/poetsenone_regular"
         android:onClick="registrarUsuario"
         android:text="@string/unirme"
         android:textAllCaps="false"
@@ -160,6 +167,7 @@
 
     <TextView
         android:id="@+id/noTienesCuentaLinkText"
+        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -178,7 +186,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="160dp"
         android:background="@drawable/rounded_button_2"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/poetsenone_regular"
         android:onClick="irALogin"
         android:text="@string/iniciar_sesion"
         android:textAllCaps="false"
