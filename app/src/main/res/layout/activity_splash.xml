@@ -21,28 +21,28 @@
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="256dp"
         android:layout_marginTop="224dp"
         android:contentDescription="@string/logo_empresa"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_presentacion" />
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/tv_titulo"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="251dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/inter_medium"
         android:text="@string/titulo_restoapp"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textColor="#FF8000"
+        android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo"
         tools:ignore="TextSizeCheck" />
