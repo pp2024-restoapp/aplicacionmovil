@@ -47,7 +47,11 @@ public class MainActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(getApplicationContext(), "Usuario Creado con éxito", Toast.LENGTH_LONG).show();
                                 Log.d("RegistroExitoso", "Usuario registrado: " + user.getEmail());
-                                // Puedes redirigir al usuario a la siguiente actividad aquí
+                                // Redirigir a la actividad de inicio de sesión
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+
                             } else {
                                 Toast.makeText(getApplicationContext(), "Error al crear usuario: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 Log.e("RegistroError", "Error al registrar usuario: " + task.getException().getMessage());
