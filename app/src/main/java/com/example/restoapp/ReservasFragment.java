@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.restoapp.controladores.ReservationBD;
@@ -44,6 +46,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
     private ReservationAdapter adapter;
     private List<Reservation> reservationList;
     private TextView noReservationsText;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -69,10 +72,10 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
             // El usuario no está autenticado, maneja este caso según lo necesites
             // Por ejemplo, redirecciona a la pantalla de inicio de sesión
         }
+
         reservationBD = new ReservationBD(context, userUid);
         reservationList = new ArrayList<>();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,7 +83,8 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         listView = view.findViewById(R.id.reservation_list);
         noReservationsText = view.findViewById(R.id.noReservationsText);
 
-        idReserve = new ArrayList<Integer>();
+
+        idReserve = new ArrayList<>();
         reservationList = new ArrayList<>();
         adapter = new ReservationAdapter(requireActivity(), R.layout.reservation_item, reservationList);
         adapter.setListener(this);
@@ -139,10 +143,33 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
     }
 
     private void mostrarDialogAgregarReserva() {
-        Dialog dialog = new Dialog(requireContext());
+        // Inflar el diseño del diálogo
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reservation, null);
 
+        // Recuperar las mesas seleccionadas de la base de datos
+        List<Integer> mesasSeleccionadas = reservationBD.obtenerMesasSeleccionadas();
+
+        // Iterar sobre cada mesa en el diseño del diálogo
+        for (int i = 1; i <= 12; i++) {
+            String cardViewId = "mesa" + i + "Container";
+            int resId = getResources().getIdentifier(cardViewId, "id", requireContext().getPackageName());
+            CardView cardView = dialogView.findViewById(resId);
+
+            if (mesasSeleccionadas.contains(i)) {
+                if (cardView != null) {
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gris));
+                    Log.d("MesasSeleccionadas", "La mesa " + i + " está seleccionada.");
+                }
+            } else {
+                if (cardView != null) {
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.principal_naranja)); // Color naranja para no seleccionadas
+                }
+            }
+        }
+
+        Dialog dialog = new Dialog(requireContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_add_reservation);
+        dialog.setContentView(dialogView); // Establecer el diseño inflado en el diálogo
         TextView btnClose = dialog.findViewById(R.id.btnClose);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,10 +313,6 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         });
 
 
-
-
-
-
         dialog.show();
     }
 
@@ -346,4 +369,8 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         selectedMinute = minute;
 
     }
+
+
+
 }
+
