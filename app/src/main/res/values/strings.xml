@@ -101,5 +101,6 @@
     <string name="elimina_reserva">Eliminar tu reserva</string>
     <string name="id">Id:</string>
     <string name="tipo">Tipo:</string>
+    <string name="btnEliminar" />
 
 </resources>
