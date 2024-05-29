@@ -130,5 +130,16 @@
         app:layout_constraintTop_toBottomOf="@id/imageButton3"
         app:srcCompat="@drawable/contactanos" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnAbrirUrl"
+        android:layout_width="145dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="4dp"
+        android:text="RestoApp Web"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
