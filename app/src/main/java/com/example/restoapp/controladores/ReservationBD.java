@@ -93,7 +93,7 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
                 "_id", "userUid", "personas", "fecha", "creada", "tipo", "mesa", "observacion", "estado"
         };
         String selection = "userUid = ?";
-        String[] selectionArgs = { userUid }; // Utilizar userUid como parte de la selección
+        String[] selectionArgs = { userUid };
 
         Cursor cursor = database.query(
                 TABLE_RESERVATIONS,
@@ -167,4 +167,47 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
             Log.e("Database", "Error al eliminar la reserva de la base de datos. ID: " + id);
         }
     }
+
+    public List<Integer> obtenerMesasSeleccionadas() {
+        List<Integer> mesasSeleccionadas = new ArrayList<>();
+
+        // Obtener una instancia de base de datos SQLiteDatabase para leer los datos
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        // Definir las columnas que deseas recuperar de la tabla
+        String[] columns = {"mesa"};
+
+        // Realizar una consulta a la base de datos para obtener todas las mesas seleccionadas
+        Cursor cursor = database.query(
+                TABLE_RESERVATIONS,
+                columns,
+                null, // No hay condiciones de selección, así que seleccionamos todas las filas
+                null,
+                null, null, null);
+
+        // Iterar sobre el cursor para obtener cada valor de la columna "mesa"
+        if (cursor.moveToFirst()) {
+            do {
+                int mesa = cursor.getInt(0);
+                if (mesa <= 12) { // Asumiendo que el número total de mesas es 12
+                    mesasSeleccionadas.add(mesa);
+                }
+                // Agrega un log para imprimir el valor de la mesa obtenido
+                Log.d("MesasSeleccionadas", "Mesa seleccionadaAAAA: " + mesa);
+            } while (cursor.moveToNext());
+        } else {
+            Log.d("MesasSeleccionadas", "No se encontraron mesas seleccionadas");
+        }
+
+        // Cerrar el cursor y la base de datos
+        cursor.close();
+        database.close();
+
+        return mesasSeleccionadas;
+    }
+
 }
+
+
+
+
