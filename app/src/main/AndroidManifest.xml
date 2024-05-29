@@ -19,6 +19,9 @@
             android:name=".RecoverPassword"
             android:exported="false" />
         <activity
+            android:name=".CategorizeActivity"
+            android:exported="false" />
+        <activity
             android:name=".BranchActivity"
             android:exported="false" />
         <activity
