@@ -3,6 +3,9 @@ package com.example.restoapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,16 +14,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
-import java.util.List;
+import es.dmoral.toasty.Toasty;
 
 public class activity_redes extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST_CODE = 1;
     private EditText editTextComentario;
-    private ImageView imageViewSelectedFile;
+
     private ImageView btn_atras;
-    private List<Uri> selectedFiles = new ArrayList<>();
 
 
     @SuppressLint("MissingInflatedId")
@@ -30,13 +31,12 @@ public class activity_redes extends AppCompatActivity {
         setContentView(R.layout.activity_redes);
 
         editTextComentario = findViewById(R.id.editTextComentario);
-        imageViewSelectedFile = findViewById(R.id.imageView);
         btn_atras = findViewById(R.id.imageButton14);
 
         editTextComentario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editTextComentario.setText(""); // Borra el contenido del EditText al hacer clic
+                editTextComentario.setText("");
             }
         });
 
@@ -44,44 +44,20 @@ public class activity_redes extends AppCompatActivity {
         btnEnviarComentario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Obtiene el comentario del EditText
+
                 String comentario = editTextComentario.getText().toString();
 
                 if (!comentario.isEmpty()) {
-                    // Muestra un mensaje en forma de Toast
-                    Toast.makeText(activity_redes.this, "Mensaje Enviado", Toast.LENGTH_SHORT).show();
-                    // Borra el contenido del EditText
+
+                    Toasty.success(activity_redes.this, "¡Mensaje Enviado! Gracias por tu opinion", Toast.LENGTH_SHORT).show();
+
                     editTextComentario.setText("");
-                    // Borra la imagen seleccionada
-                    imageViewSelectedFile.setImageResource(0);
-                    selectedFiles.clear();
+                } else {
+                    Toasty.warning(activity_redes.this, "Debe ingresar un comentario", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        ImageButton btnSelectFile = findViewById(R.id.btnSelectFile);
-        btnSelectFile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFilePicker();
-            }
-        });
-
-        ImageButton btnSelectFoto = findViewById(R.id.btnSelectFoto);
-        btnSelectFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Aquí puedes implementar la lógica para abrir la selección de fotos
-            }
-        });
-
-        ImageButton btnOpenFacebook = findViewById(R.id.btnOpenFacebook);
-        btnOpenFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFacebookProfile("nombre_de_usuario_facebook");
-            }
-        });
 
         ImageButton btnOpenWhatsApp = findViewById(R.id.btnOpenWhatsApp);
         btnOpenWhatsApp.setOnClickListener(new View.OnClickListener() {
@@ -99,12 +75,27 @@ public class activity_redes extends AppCompatActivity {
             }
         });
 
+        ImageButton btnOpenFacebook = findViewById(R.id.btnOpenFacebook);
+        btnOpenFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFacebookProfile("nombre_de_usuario_facebook");
+            }
+        });
+
         btn_atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String comentario = editTextComentario.getText().toString();
+                if (comentario.isEmpty()) {
 
-                Intent intent = new Intent(activity_redes.this, DishesActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(activity_redes.this, DishesActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
+
+                showDiscardCommentDialog();
             }
         });
     }
@@ -126,7 +117,7 @@ public class activity_redes extends AppCompatActivity {
         } catch (Exception e) {
             // Maneja excepciones si WhatsApp no está instalado o si ocurre un error
             e.printStackTrace();
-            Toast.makeText(this, "No se pudo abrir WhatsApp. Asegúrate de que esté instalado.", Toast.LENGTH_SHORT).show();
+            Toasty.error(this, "No se pudo abrir WhatsApp. Asegúrate de que esté instalado.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -158,25 +149,29 @@ public class activity_redes extends AppCompatActivity {
         }
     }
 
-    private void openFilePicker() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
+    private void showDiscardCommentDialog() {
 
-        startActivityForResult(Intent.createChooser(intent, "Seleccionar archivo"), PICK_FILE_REQUEST_CODE);
-    }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Descartar Comentario");
+        builder.setMessage("¿Está seguro que desea descartar el comentario?");
+        builder.setPositiveButton("Descartar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
-            if (data != null) {
-                Uri selectedFileUri = data.getData();
-                // Aquí puedes trabajar con el archivo seleccionado (por ejemplo, guardar la ruta o cargarlo).
-                selectedFiles.add(selectedFileUri);
-                imageViewSelectedFile.setImageURI(selectedFiles.get(0)); // Muestra el primer archivo seleccionado en el ImageView
+                editTextComentario.setText(""); // Clear comment
+                Intent intent = new Intent(activity_redes.this, DishesActivity.class);
+                startActivity(intent);
             }
-        }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+
+        builder.create().show();
     }
 }
