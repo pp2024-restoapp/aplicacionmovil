@@ -11,23 +11,24 @@
         style="@style/Widget.AppCompat.TextView"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/poetsenone_regular"
         android:text="@string/medios_pago"
         android:textAlignment="center"
         android:textColor="#131111"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton19"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/btnEnviarComentario"
         android:layout_width="235dp"
-        android:layout_height="38dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
+        android:padding="8dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#CE5B37"
         android:fontFamily="@font/poetsenone_regular"
@@ -41,7 +42,9 @@
     <EditText
         android:id="@+id/editTextComentario"
         android:layout_width="341dp"
-        android:layout_height="217dp"
+        android:layout_height="wrap_content"
+        android:minLines="6"
+        android:padding="8dp"
         android:layout_marginTop="60dp"
         android:autofillHints=""
         android:background="@drawable/round_text"
@@ -49,9 +52,8 @@
         android:ems="10"
         android:fontFamily="@font/poetsenone_regular"
         android:hint="@string/tu_comentario"
-        android:inputType="text"
-        android:minLines="2"
-        android:textAlignment="center"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
         android:textColor="#575353"
         android:textDirection="firstStrongRtl"
         android:textSize="20sp"
@@ -59,6 +61,7 @@
         app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
+
 
 
     <TextView
@@ -83,36 +86,36 @@
         android:id="@+id/btnOpenInstagram"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
 
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="32dp"
         android:contentDescription="@string/abrir_instagram"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton10"
+        app:layout_constraintEnd_toStartOf="@+id/btnOpenFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarComentario"
         app:srcCompat="@drawable/instagram" />
 
     <ImageButton
         android:id="@+id/btnOpenWhatsApp"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
 
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="70dp"
         android:contentDescription="@string/abrir_whatsApp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnOpenFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarComentario"
         app:srcCompat="@drawable/whasapp" />
 
     <ImageButton
-        android:id="@+id/imageButton10"
+        android:id="@+id/btnOpenFacebook"
         android:layout_width="30dp"
         android:layout_height="30dp"
 
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnOpenWhatsApp"
-        app:srcCompat="@drawable/in" />
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarComentario"
+        app:srcCompat="@drawable/face" />
 
     <ImageButton
         android:id="@+id/imageButton14"
@@ -131,34 +134,34 @@
         android:id="@+id/imageButton16"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/abrir_visa"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton19"
         app:srcCompat="@drawable/visa" />
 
     <ImageButton
         android:id="@+id/imageButton18"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/abrir_master"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton19"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/master" />
 
     <ImageButton
         android:id="@+id/imageButton19"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
 
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="@string/abrir_mercadopago"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton16"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton18"
         app:srcCompat="@drawable/mercado" />
 
     <TextView
