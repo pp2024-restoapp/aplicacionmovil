@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-
-    android:background="#C8BABA"
-    android:backgroundTint="#DFDCDC"
-    android:layout_height="match_parent"    tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    android:background="@drawable/onboarding_img"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/IngresaATuCuentaLinkText"
@@ -18,8 +13,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poetsenone_regular"
         android:text="@string/registrate"
-        android:textColor="#616161"
-        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iniciarSesionTextView" />
@@ -27,6 +22,7 @@
 
     <TextView
         android:id="@+id/iniciarSesionTextView"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
@@ -165,12 +161,12 @@
 
     <TextView
         android:id="@+id/noTienesCuentaLinkText"
-        android:fontFamily="@font/poetsenone_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poetsenone_regular"
         android:text="@string/ya_tienes_cuenta"
-        android:textColor="#616161"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -194,11 +190,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noTienesCuentaLinkText"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextSizeCheck" />
 
-
-
-
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="135dp"
+        android:layout_height="76dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/logo_sin_fondo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
