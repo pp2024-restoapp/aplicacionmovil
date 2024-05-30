@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etUsername;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
 
                 if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Por favor, ingrese un nombre de usuario y contraseña", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(LoginActivity.this, "Por favor, ingrese un nombre de usuario y contraseña", Toast.LENGTH_SHORT).show();
                 } else {
                     // Utiliza la autenticación de Firebase para verificar las credenciales del usuario
                     mAuth.signInWithEmailAndPassword(username, password)
@@ -55,13 +56,14 @@ public class LoginActivity extends AppCompatActivity {
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         assert user != null;
                                         String uid = user.getUid(); // Obtiene el UID del usuario
-                                        Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                                        Toasty.success(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
                                         Intent intent = new Intent(LoginActivity.this, DishesActivity.class);
                                         intent.putExtra("USER_UID", uid); // Pasa el UID a la siguiente actividad
                                         startActivity(intent);
                                     } else {
-                                        Toast.makeText(LoginActivity.this, "Error en el inicio de sesión: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        String errorMessage = getLoginErrorMessage(task.getException());
+                                        Toasty.error(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -88,5 +90,23 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private String getLoginErrorMessage(Exception exception) {
+        if (exception != null) {
+            String error = exception.getMessage();
+            if (error.contains("There is no user record corresponding to this identifier")) {
+                return "No hay ningún usuario que corresponda a este correo electrónico.";
+            } else if (error.contains("The password is invalid or the user does not have a password")) {
+                return "La contraseña es incorrecta o el usuario no tiene una contraseña.";
+            } else if (error.contains("A network error (such as timeout, interrupted connection or unreachable host) has occurred")) {
+                return "Se ha producido un error de red. Por favor, intente de nuevo.";
+            } else if (error.contains("The email address is badly formatted")) {
+                return "El formato del correo electrónico es inválido.";
+            } else if (error.contains("The user account has been disabled by an administrator")) {
+                return "La cuenta de usuario ha sido deshabilitada por un administrador.";
+            }
+        }
+        return "Error desconocido: " + exception.getMessage();
     }
 }

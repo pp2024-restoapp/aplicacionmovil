@@ -157,6 +157,286 @@
                     android:textDirection="firstStrongRtl"
                     android:textSize="18sp" />
 
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="5dp"
+                    android:orientation="vertical">
+
+                    <!-- Esquema de mesas -->
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="16dp"
+                            android:gravity="center">
+
+                            <!-- Mesa 1 -->
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/mesa1Container"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="20dp"
+                                app:cardCornerRadius="25dp"
+                                app:cardElevation="4dp">
+
+                                <TextView
+                                    android:id="@+id/mesa1Text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="1"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="24sp"/>
+                            </androidx.cardview.widget.CardView>
+
+                            <!-- Mesa 2 -->
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/mesa2Container"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="20dp"
+                                app:cardCornerRadius="25dp"
+                                app:cardElevation="4dp">
+
+                                <TextView
+                                    android:id="@+id/mesa2Text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="2"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="24sp"/>
+                            </androidx.cardview.widget.CardView>
+
+                            <!-- Mesa 3 -->
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/mesa3Container"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="20dp"
+                                app:cardCornerRadius="25dp"
+                                app:cardElevation="4dp">
+
+                                <TextView
+                                    android:id="@+id/mesa3Text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="3"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="24sp"/>
+                            </androidx.cardview.widget.CardView>
+
+                        <!-- Mesa 4 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa4Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="20dp"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa4Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="4"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                    <!-- Segunda fila de mesas -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center">
+
+                        <!-- Mesa 5 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa5Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="20dp"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa5Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="5"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Mesa 6 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa6Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="20dp"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa6Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="6"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Mesa 7 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa7Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="20dp"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa7Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="7"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Mesa 8 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa8Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="20dp"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa8Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="8"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <!-- Tercera fila de mesas -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center">
+
+
+
+                        <!-- Mesa 9 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa9Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa9Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="9"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                            </androidx.cardview.widget.CardView>
+
+                        <!-- Mesa 10 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa10Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="20dp"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa10text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="10"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Mesa 11 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa11Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="20dp"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa11Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="11"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Mesa 12 -->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mesa12Container"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="25dp"
+                            app:cardElevation="4dp">
+
+                            <TextView
+                                android:id="@+id/mesa12Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="12"
+                                android:textColor="#FFFFFF"
+                                android:textSize="24sp"/>
+                        </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+                </LinearLayout>
+
+
                 <Button
                     android:id="@+id/botonConfirmarReserva"
                     android:fontFamily="@font/poetsenone_regular"

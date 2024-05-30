@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -78,6 +81,7 @@ public class InicioFragment extends Fragment {
         });
 
 
+
         // inicio { visitar restoApp web }
 
         // Encuentra el botón por su ID
@@ -99,6 +103,22 @@ public class InicioFragment extends Fragment {
         });
 
         // fin { visitar restoApp web }
+
+
+        // Obtener el NavController
+        NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+
+        // Configurar el OnClickListener para la imagen de reservar
+        ImageButton imageButton = view.findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navegar al fragmento de reservas
+                navController.navigate(R.id.page_reservas);
+            }
+        });
+
 
         return view;
     }
