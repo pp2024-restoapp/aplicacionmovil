@@ -1,6 +1,7 @@
 package com.example.restoapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -78,6 +80,31 @@ public class InicioFragment extends Fragment {
             }
         });
 
+
+
+        // inicio { visitar restoApp web }
+
+        // Encuentra el botón por su ID
+        Button btnAbrirUrl = view.findViewById(R.id.btnAbrirUrl);
+
+        // Configuramos el evento OnClickListener
+        btnAbrirUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // URL que deseamos abrir
+                String url = "https://github.com/pp2024-restoapp";
+
+                // Crea un Intent con la URL
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+                // Inicia la actividad del navegador
+                startActivity(intent);
+            }
+        });
+
+        // fin { visitar restoApp web }
+
+
         // Obtener el NavController
         NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
@@ -91,6 +118,7 @@ public class InicioFragment extends Fragment {
                 navController.navigate(R.id.page_reservas);
             }
         });
+
 
         return view;
     }
