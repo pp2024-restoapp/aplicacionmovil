@@ -42,6 +42,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment:2.7.4")
     implementation("androidx.navigation:navigation-ui:2.7.4")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("androidx.activity:activity:1.9.0")
+    implementation("com.github.GrenderG:Toasty:1.5.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

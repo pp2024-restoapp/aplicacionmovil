@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:backgroundTint="#FCAA6D"
+    android:backgroundTint="#000000"
     android:background="@drawable/rounded_background"
     android:padding="16dp">
 
@@ -22,6 +22,7 @@
 
         <TextView
             android:id="@+id/textViewId"
+            android:fontFamily="@font/poetsenone_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="106dp"
@@ -37,6 +38,7 @@
 
             <TextView
                 android:id="@+id/textViewPersonas"
+                android:fontFamily="@font/poetsenone_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
@@ -46,6 +48,7 @@
 
             <TextView
                 android:id="@+id/textViewFecha"
+                android:fontFamily="@font/poetsenone_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fecha: "
@@ -64,6 +67,7 @@
 
         <TextView
             android:id="@+id/textViewTipo"
+            android:fontFamily="@font/poetsenone_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tipo"
@@ -72,6 +76,7 @@
 
         <TextView
             android:id="@+id/textViewMesa"
+            android:fontFamily="@font/poetsenone_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mesa: "
@@ -80,6 +85,7 @@
 
         <TextView
             android:id="@+id/textViewObservacion"
+            android:fontFamily="@font/poetsenone_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Observacion: "
@@ -88,11 +94,22 @@
 
         <TextView
             android:id="@+id/textViewEstado"
+            android:fontFamily="@font/poetsenone_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Estado: "
             android:textColor="@color/black"
             android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/trash"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom|end"
+            android:contentDescription="@string/elimina_reserva"
+            android:onClick="onReservationDeleted"
+            android:src="@drawable/trash"
+            tools:ignore="TouchTargetSizeCheck" />
 
 
         <!-- Agrega más vistas para mostrar otros detalles de la reserva -->
@@ -103,16 +120,6 @@
 
     <!-- Agrega más vistas para mostrar otros detalles de la reserva -->
 
-
-    <ImageView
-        android:id="@+id/trash"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="bottom|end"
-        android:contentDescription="@string/elimina_reserva"
-        android:onClick="onReservationDeleted"
-        android:src="@drawable/trash"
-        tools:ignore="TouchTargetSizeCheck" />
 
 </FrameLayout>
 

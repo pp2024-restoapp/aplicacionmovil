@@ -19,7 +19,9 @@ public class activity_redes extends AppCompatActivity {
     private static final int PICK_FILE_REQUEST_CODE = 1;
     private EditText editTextComentario;
     private ImageView imageViewSelectedFile;
+    private ImageView btn_atras;
     private List<Uri> selectedFiles = new ArrayList<>();
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -29,6 +31,7 @@ public class activity_redes extends AppCompatActivity {
 
         editTextComentario = findViewById(R.id.editTextComentario);
         imageViewSelectedFile = findViewById(R.id.imageView);
+        btn_atras = findViewById(R.id.imageButton14);
 
         editTextComentario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +96,15 @@ public class activity_redes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openInstagramProfile("nombre_de_usuario_instagram");
+            }
+        });
+
+        btn_atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(activity_redes.this, DishesActivity.class);
+                startActivity(intent);
             }
         });
     }

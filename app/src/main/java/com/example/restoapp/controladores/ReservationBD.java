@@ -1,10 +1,10 @@
 package com.example.restoapp.controladores;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.ContentValues;
 import android.util.Log;
 
 import com.example.restoapp.modelos.Reservation;
@@ -18,14 +18,18 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
     private static final String DATABASE_NAME = "ReservationsDB";
     private static final String TABLE_RESERVATIONS = "reservas";
 
-    public ReservationBD(Context context) {
+    private String userUid;
+
+    public ReservationBD(Context context, String userUid) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.userUid = userUid; // Asignar userUid al constructor
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableSQL = "CREATE TABLE " + TABLE_RESERVATIONS + " (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "userUid TEXT, " +
                 "personas INTEGER, " +
                 "fecha TEXT, " +
                 "creada DATETIME DEFAULT CURRENT_TIMESTAMP, " +
@@ -39,6 +43,7 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        // Método necesario para actualizar la base de datos, no implementado en esta solución
     }
 
     @Override
@@ -61,15 +66,17 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
             cursor.moveToFirst();
 
             Reservation reservation = new Reservation(
-                    cursor.getInt(0),
-                    cursor.getInt(1),
-                    cursor.getString(2),
-                    new Date (cursor.getLong(3)),
-                    cursor.getString(4),
-                    cursor.getInt(5),
-                    cursor.getString(6),
-                    cursor.getString(7)
+                    cursor.getInt(0),                   // id
+                    cursor.getString(1),                   // userID
+                    cursor.getInt(2),                   // number_of_people
+                    cursor.getString(3),                // dateAndTime
+                    new Date(cursor.getLong(4)),        // created
+                    cursor.getString(5),                // type
+                    cursor.getInt(6),                   // table
+                    cursor.getString(7),                // observations
+                    cursor.getString(8)                 // status
             );
+
             cursor.close();
             return reservation;
 
@@ -81,22 +88,34 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
     @Override
     public List<Reservation> lista() {
         List<Reservation> reserveList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + TABLE_RESERVATIONS + " ORDER BY _id DESC";
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.rawQuery(selectQuery, null);
+        String[] columns = {
+                "_id", "userUid", "personas", "fecha", "creada", "tipo", "mesa", "observacion", "estado"
+        };
+        String selection = "userUid = ?";
+        String[] selectionArgs = { userUid };
+
+        Cursor cursor = database.query(
+                TABLE_RESERVATIONS,
+                columns,
+                selection,
+                selectionArgs,
+                null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 Reservation reservation = new Reservation(
-                        cursor.getInt(0),
-                        cursor.getInt(1),
-                        cursor.getString(2),
-                        new Date(cursor.getLong(3)),
-                        cursor.getString(4),
-                        cursor.getInt(5),
-                        cursor.getString(6),
-                        cursor.getString(7)
+                        cursor.getInt(0),                   // id
+                        cursor.getString(1),                   // userID
+                        cursor.getInt(2),                   // number_of_people
+                        cursor.getString(3),                // dateAndTime
+                        new Date(cursor.getLong(4)),        // created
+                        cursor.getString(5),                // type
+                        cursor.getInt(6),                   // table
+                        cursor.getString(7),                // observations
+                        cursor.getString(8)                 // status
                 );
+
                 reserveList.add(reservation);
             } while (cursor.moveToNext());
         }
@@ -109,6 +128,7 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put("userUid", reserva.getUserUid());
         values.put("personas", reserva.getNumber_of_people());
         values.put("fecha", reserva.getDateAndTime());
         values.put("tipo", reserva.getType());
@@ -127,11 +147,9 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
         database.close();
     }
 
-
-
     @Override
     public void actualizar(int id, Reservation reserve) {
-
+        // Método necesario para actualizar una reserva, no implementado en esta solución
     }
 
     @Override
@@ -150,4 +168,46 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
         }
     }
 
+    public List<Integer> obtenerMesasSeleccionadas() {
+        List<Integer> mesasSeleccionadas = new ArrayList<>();
+
+        // Obtener una instancia de base de datos SQLiteDatabase para leer los datos
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        // Definir las columnas que deseas recuperar de la tabla
+        String[] columns = {"mesa"};
+
+        // Realizar una consulta a la base de datos para obtener todas las mesas seleccionadas
+        Cursor cursor = database.query(
+                TABLE_RESERVATIONS,
+                columns,
+                null, // No hay condiciones de selección, así que seleccionamos todas las filas
+                null,
+                null, null, null);
+
+        // Iterar sobre el cursor para obtener cada valor de la columna "mesa"
+        if (cursor.moveToFirst()) {
+            do {
+                int mesa = cursor.getInt(0);
+                if (mesa <= 12) { // Asumiendo que el número total de mesas es 12
+                    mesasSeleccionadas.add(mesa);
+                }
+                // Agrega un log para imprimir el valor de la mesa obtenido
+                Log.d("MesasSeleccionadas", "Mesa seleccionadaAAAA: " + mesa);
+            } while (cursor.moveToNext());
+        } else {
+            Log.d("MesasSeleccionadas", "No se encontraron mesas seleccionadas");
+        }
+
+        // Cerrar el cursor y la base de datos
+        cursor.close();
+        database.close();
+
+        return mesasSeleccionadas;
+    }
+
 }
+
+
+
+
