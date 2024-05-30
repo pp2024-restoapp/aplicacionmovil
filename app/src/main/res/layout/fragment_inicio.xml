@@ -19,7 +19,6 @@
             style="@style/Widget.AppCompat.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="164dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="#1E1F22"
             android:fontFamily="@font/poetsenone_regular"
@@ -27,6 +26,7 @@
             android:textColor="#1E1F22"
             android:textSize="30sp"
             android:textStyle="normal|bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,11 +34,12 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="108dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poetsenone_regular"
             android:text="@string/encuentra_platos_fav"
             android:textColor="@color/principal_naranja"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView8" />
 
@@ -64,6 +65,7 @@
             android:layout_height="160dp"
 
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/slider"
             android:backgroundTint="#000000"
@@ -99,7 +101,6 @@
             android:background="@drawable/rounded_button_2"
             android:contentDescription="@string/boton_para_reservar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.387"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView11"
             app:srcCompat="@drawable/reservar" />
@@ -109,12 +110,10 @@
             android:layout_width="346dp"
             android:layout_height="89dp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="38dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/rounded_button_2"
             android:contentDescription="@string/boton_para_busqueda"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageButton"
             app:srcCompat="@drawable/cerca" />
@@ -124,9 +123,11 @@
             android:layout_width="351dp"
             android:layout_height="87dp"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_button_2"
             android:contentDescription="@string/boton_para_contactos"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageButton3"

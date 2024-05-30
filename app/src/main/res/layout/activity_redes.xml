@@ -11,163 +11,111 @@
         style="@style/Widget.AppCompat.TextView"
         android:layout_width="135dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/poetsenone_regular"
         android:text="@string/medios_pago"
         android:textAlignment="center"
         android:textColor="#131111"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:ignore="TextSizeCheck"
-        tools:layout_editor_absoluteX="328dp"
-        tools:layout_editor_absoluteY="665dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/btnEnviarComentario"
         android:layout_width="235dp"
-        android:layout_height="38dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:padding="8dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#CE5B37"
         android:fontFamily="@font/poetsenone_regular"
         android:text="@string/enviar_comentario"
         android:textColor="#FEFEFE"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnOpenFacebook"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.321"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.699" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="364dp"
-        android:layout_height="150dp"
-        android:background="@drawable/round_text"
-        tools:ignore="ContentDescription,ImageContrastCheck"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="285dp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/Widget.AppCompat.TextView"
-        android:layout_width="337dp"
-        android:layout_height="37dp"
-        android:fontFamily="@font/poetsenone_regular"
-        android:text="Añadí una foto (opcional)"
-        android:textAlignment="center"
-        android:textColor="#131010"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.346"
-        tools:ignore="HardcodedText,TextSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextComentario" />
 
     <EditText
         android:id="@+id/editTextComentario"
-        android:layout_width="345dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="116dp"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:minLines="6"
+        android:padding="8dp"
+        android:layout_marginTop="60dp"
         android:autofillHints=""
         android:background="@drawable/round_text"
         android:backgroundTint="#DDDDDD"
         android:ems="10"
         android:fontFamily="@font/poetsenone_regular"
         android:hint="@string/tu_comentario"
-        android:inputType="text"
-        android:minLines="2"
-        android:textAlignment="center"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
         android:textColor="#575353"
         android:textDirection="firstStrongRtl"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSelectFile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+
 
     <TextView
         android:id="@+id/textView5"
         style="@style/Widget.AppCompat.TextView"
         android:layout_width="250dp"
         android:layout_height="32dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/poetsenone_regular"
         android:text="@string/dejar_comentario"
         android:textAlignment="center"
         android:textColor="#151212"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextComentario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="TextSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/btnSelectFile"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:contentDescription="@string/seleccionar_archivo"
-
-        app:srcCompat="@drawable/adjuntar_img"
-        tools:layout_editor_absoluteX="371dp"
-        tools:layout_editor_absoluteY="452dp" />
-
-    <ImageButton
-        android:id="@+id/btnSelectFoto"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:contentDescription="@string/selecciona_foto"
-
-        app:srcCompat="@drawable/foto_img"
-        tools:ignore="ImageContrastCheck"
-        tools:layout_editor_absoluteX="318dp"
-        tools:layout_editor_absoluteY="452dp" />
-
-    <ImageButton
-        android:id="@+id/btnOpenFacebook"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:contentDescription="@string/abrir_facebook"
-
-        app:srcCompat="@drawable/face"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="684dp" />
 
     <ImageButton
         android:id="@+id/btnOpenInstagram"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:contentDescription="@string/abrir_instagram"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
 
-        app:srcCompat="@drawable/instagram"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="684dp" />
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/abrir_instagram"
+        app:layout_constraintEnd_toStartOf="@+id/btnOpenFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarComentario"
+        app:srcCompat="@drawable/instagram" />
 
     <ImageButton
         android:id="@+id/btnOpenWhatsApp"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:contentDescription="@string/abrir_whatsApp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
 
-        app:srcCompat="@drawable/whasapp"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="684dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="70dp"
+        android:contentDescription="@string/abrir_whatsApp"
+        app:layout_constraintStart_toEndOf="@+id/btnOpenFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarComentario"
+        app:srcCompat="@drawable/whasapp" />
 
     <ImageButton
-        android:id="@+id/imageButton10"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/btnOpenFacebook"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
 
-        app:srcCompat="@drawable/in"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="684dp" />
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarComentario"
+        app:srcCompat="@drawable/face" />
 
     <ImageButton
         android:id="@+id/imageButton14"
@@ -186,45 +134,50 @@
         android:id="@+id/imageButton16"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/abrir_visa"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/visa"
-        tools:layout_editor_absoluteX="331dp" />
+        app:layout_constraintEnd_toStartOf="@+id/imageButton19"
+        app:srcCompat="@drawable/visa" />
 
     <ImageButton
         android:id="@+id/imageButton18"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/abrir_master"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/master"
-        tools:layout_editor_absoluteX="423dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/master" />
 
     <ImageButton
         android:id="@+id/imageButton19"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:contentDescription="@string/abrir_mercadopago"
 
-        app:srcCompat="@drawable/mercado"
-        tools:layout_editor_absoluteX="376dp"
-        tools:layout_editor_absoluteY="684dp" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/abrir_mercadopago"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton18"
+        app:srcCompat="@drawable/mercado" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/poetsenone_regular"
         android:text="Contacto"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/textView5"
-        app:layout_constraintHorizontal_bias="0.697"
-        app:layout_constraintStart_toEndOf="@+id/imageButton14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
