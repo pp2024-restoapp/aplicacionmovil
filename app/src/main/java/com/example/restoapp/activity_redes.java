@@ -30,7 +30,6 @@ public class activity_redes extends AppCompatActivity {
         setContentView(R.layout.activity_redes);
 
         editTextComentario = findViewById(R.id.editTextComentario);
-        imageViewSelectedFile = findViewById(R.id.imageView);
         btn_atras = findViewById(R.id.imageButton14);
 
         editTextComentario.setOnClickListener(new View.OnClickListener() {
@@ -59,31 +58,8 @@ public class activity_redes extends AppCompatActivity {
             }
         });
 
-        ImageButton btnSelectFile = findViewById(R.id.btnSelectFile);
-        btnSelectFile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFilePicker();
-            }
-        });
 
-        ImageButton btnSelectFoto = findViewById(R.id.btnSelectFoto);
-        btnSelectFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Aquí puedes implementar la lógica para abrir la selección de fotos
-            }
-        });
-
-        ImageButton btnOpenFacebook = findViewById(R.id.btnOpenFacebook);
-        btnOpenFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openFacebookProfile("nombre_de_usuario_facebook");
-            }
-        });
-
-        ImageButton btnOpenWhatsApp = findViewById(R.id.btnOpenWhatsApp);
+       ImageButton btnOpenWhatsApp = findViewById(R.id.btnOpenWhatsApp);
         btnOpenWhatsApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
