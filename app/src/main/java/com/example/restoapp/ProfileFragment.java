@@ -4,20 +4,23 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.SharedPreferences;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,8 +29,10 @@ public class ProfileFragment extends Fragment {
     private static final int REQUEST_IMAGE_CHANGE = 1;
     private ImageView profileImageView;
     private TextView textViewEmail;
+    private TextView textViewNombre;
     private Button botonCerrarSesion;
     private SharedPreferences sharedPreferences;
+
     private Uri selectedImageUri;
 
     private final ActivityResultLauncher<Intent> startPhotoChangeActivity =
@@ -36,11 +41,8 @@ public class ProfileFragment extends Fragment {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent data = result.getData();
                             if (data != null) {
-                                // Obtiene la URI de la imagen seleccionada desde PhotoChangeActivity
                                 String newImageUriString = data.getStringExtra("imageUri");
                                 Uri newImageUri = Uri.parse(newImageUriString);
-
-                                // Llama al método para actualizar la imagen de perfil
                                 updateProfileImage(newImageUri);
                             }
                         }
@@ -53,6 +55,7 @@ public class ProfileFragment extends Fragment {
         profileImageView = view.findViewById(R.id.profile_image_view);
         textViewEmail = view.findViewById(R.id.textViewName2);
         botonCerrarSesion = view.findViewById(R.id.button5);
+        textViewNombre = view.findViewById(R.id.textViewName4);
 
         sharedPreferences = requireActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE);
 
@@ -90,19 +93,33 @@ public class ProfileFragment extends Fragment {
     private void showUserData() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // El usuario está autenticado, por lo que puedes obtener su correo electrónico
             String userEmail = user.getEmail();
+            String userId = user.getUid();
 
-            // Establece el correo electrónico en el TextView
-            textViewEmail.setText(userEmail);
+            DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-            // Guarda el correo electrónico en SharedPreferences para su uso posterior
+            Cursor cursor = db.query(DatabaseHelper.TABLE_USERS,
+                    new String[]{DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_LASTNAME},
+                    DatabaseHelper.COLUMN_UID + "=?",
+                    new String[]{userId},
+                    null, null, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+                @SuppressLint("Range") String apellido = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LASTNAME));
+
+                textViewNombre.setText("Nombre: "+ nombre + " " + apellido);
+                cursor.close();
+            }
+
+            textViewEmail.setText("Email: " + userEmail);
+
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("email", userEmail);
+            editor.putString("Email", userEmail);
             editor.apply();
         } else {
-            // El usuario no está autenticado
-            // Realiza alguna acción si es necesario
+            Log.e("ProfileFragment", "El usuario no está autenticado");
         }
     }
 }
