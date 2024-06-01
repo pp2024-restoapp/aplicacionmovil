@@ -99,6 +99,7 @@
     <string name="hola_bienvenido">¡Hola!</string>
     <string name="no_tienes_reservas">Por acá, nada todavía. ¿Te gustaría agregar una reserva?</string>
     <string name="elimina_reserva">Eliminar tu reserva</string>
+    <string name="editar_reserva">Editar tu reserva</string>
     <string name="id">Id:</string>
     <string name="tipo">Tipo:</string>
 
