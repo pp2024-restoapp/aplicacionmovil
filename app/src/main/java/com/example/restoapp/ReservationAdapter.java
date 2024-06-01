@@ -26,9 +26,14 @@
         private String userUid;
         private Listener listener; // Listener para notificar eventos
 
+
+
         public interface Listener {
             void onReservationDeleted(int reservationId);
+            void onReservationEdit(Reservation reservation);
         }
+
+
 
         public ReservationAdapter(Context context, int layoutResourceId, List<Reservation> data) {
             super(context, layoutResourceId, data);
@@ -49,6 +54,7 @@
             this.listener = listener;
         }
 
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View row = convertView;
@@ -68,6 +74,7 @@
                 holder.textViewObservacion = row.findViewById(R.id.textViewObservacion);
                 holder.textViewEstado = row.findViewById(R.id.textViewEstado);
                 holder.trash = row.findViewById(R.id.trash); // ImageView del ícono "trash"
+                holder.edit = row.findViewById(R.id.edit);
 
                 row.setTag(holder);
             } else {
@@ -108,6 +115,15 @@
                 }
             });
 
+            holder.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onReservationEdit(reservation);
+                    }
+                }
+            });
+
             return row;
         }
 
@@ -137,6 +153,8 @@
 
         static class ReservationHolder {
             public ImageView trash;
+
+            public ImageView edit;
             TextView textViewId;
             TextView textViewPersonas;
             TextView textViewFecha;

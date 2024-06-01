@@ -98,6 +98,10 @@ public class Reservation {
         this.status = status;
     }
 
+    public void setUserUid(String userUid) {
+        this.userUid = userUid;
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +
