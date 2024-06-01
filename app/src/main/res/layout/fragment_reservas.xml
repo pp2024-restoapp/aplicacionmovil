@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            android:fontFamily="@font/libre_baskerville_bold"
+            android:fontFamily="@font/poetsenone_regular"
             android:text="@string/title"
             android:textColor="#040C22"
             android:textSize="38sp"
@@ -53,6 +53,7 @@
 
         <TextView
             android:id="@+id/sub_my_reservations2"
+            android:fontFamily="@font/poetsenone_regular"
             android:layout_width="362dp"
             android:layout_height="29dp"
             android:layout_marginStart="24dp"

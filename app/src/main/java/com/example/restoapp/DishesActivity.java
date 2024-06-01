@@ -22,6 +22,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 
 public class DishesActivity extends AppCompatActivity {
+    private String userUid;
     //ViewFlipper v_flipper;
 
     //int[] images = {R.drawable.peruana,R.drawable.sushi,R.drawable.pollo};
@@ -32,6 +33,9 @@ public class DishesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dishes);
+
+        // Obtén el UID del Intent
+        userUid = getIntent().getStringExtra("USER_UID");
 
         String nombreUsuario = getIntent().getStringExtra("nombreUsuario");
 
@@ -46,8 +50,6 @@ public class DishesActivity extends AppCompatActivity {
 //        for (int image : images) {
 //            flipperImages(image);
 //        }
-
-
 
         boolean showThirdFragment = getIntent().getBooleanExtra("showThirdFragment", false);
         if (showThirdFragment) {
