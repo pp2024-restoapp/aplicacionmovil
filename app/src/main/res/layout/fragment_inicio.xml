@@ -118,8 +118,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poetsenone_regular"
-                    android:text="Reservar"
-                    android:textColor="@color/black"
+                    android:text="@string/reservar"
+                    android:textColor="@color/principal_naranja"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -128,9 +128,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poetsenone_regular"
-                    android:text="Explora las mesas que tenemos disponibles"
+                    android:text="@string/explora_mesas"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="12dp"
+                    android:textStyle="italic"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -159,8 +161,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poetsenone_regular"
-                    android:text="Cerca"
-                    android:textColor="@color/black"
+                    android:text="@string/cerca"
+                    android:textColor="@color/principal_naranja"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -169,9 +171,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poetsenone_regular"
-                    android:text="Explora las sucursales más cercanas"
+                    android:text="@string/sucursales_cerca"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="italic"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -202,8 +206,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poetsenone_regular"
-                    android:text="Contactanos"
-                    android:textColor="@color/black"
+                    android:text="@string/contactanos"
+                    android:textColor="@color/principal_naranja"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -212,9 +216,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poetsenone_regular"
-                    android:text="Comunícate con nosotros"
+                    android:text="@string/comunicate"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_marginTop="12dp"
+                    android:textStyle="italic"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
