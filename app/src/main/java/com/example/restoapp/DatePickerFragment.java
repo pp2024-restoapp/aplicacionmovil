@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
@@ -12,10 +13,8 @@ import java.util.Calendar;
 public class DatePickerFragment extends DialogFragment {
     public DateSelectionListener dateListener;
 
-
     public interface DateSelectionListener {
         void onDateSelected(int year, int month, int day);
-
     }
 
     @Override
@@ -28,12 +27,20 @@ public class DatePickerFragment extends DialogFragment {
         return new DatePickerDialog(requireActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                if (dateListener != null) {
-                    dateListener.onDateSelected(year, month, dayOfMonth);
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year, month, dayOfMonth);
+
+                Calendar currentDate = Calendar.getInstance();
+                if (selectedDate.before(currentDate)) {
+                    // Mostrar un mensaje de error si la fecha seleccionada es anterior a la fecha actual
+                    Toast.makeText(getContext(), "Debe seleccionar una fecha futura", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (dateListener != null) {
+                        dateListener.onDateSelected(year, month, dayOfMonth);
+                    }
                 }
             }
         }, year, month, day);
-
     }
 
     public void setDateListener(DateSelectionListener listener) {
