@@ -92,46 +92,133 @@
             app:layout_constraintTop_toBottomOf="@id/v_flipper" />
 
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="349dp"
-            android:layout_height="94dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_button_2"
-            android:contentDescription="@string/boton_para_reservar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView11"
-            app:srcCompat="@drawable/reservar" />
 
-        <ImageButton
-            android:id="@+id/imageButton3"
+
+        <!-- CardView for "Reservar" section -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewReservar"
             android:layout_width="346dp"
             android:layout_height="89dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/rounded_button_2"
-            android:contentDescription="@string/boton_para_busqueda"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageButton"
-            app:srcCompat="@drawable/cerca" />
+            app:layout_constraintTop_toBottomOf="@id/textView11">
 
-        <ImageButton
-            android:id="@+id/imageButton4"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textViewReservarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="Reservar"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewReservarSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="Explora las mesas que tenemos disponibles"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- CardView for "Cerca" section -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewCerca"
+            android:layout_width="346dp"
+            android:layout_height="89dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="24dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardViewReservar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textViewCercaTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="Cerca"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewCercaSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="Explora las sucursales más cercanas"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- CardView for "Contactanos" section -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewContactanos"
             android:layout_width="351dp"
             android:layout_height="87dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_button_2"
-            android:contentDescription="@string/boton_para_contactos"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton3"
-            app:srcCompat="@drawable/contactanos" />
+            app:layout_constraintTop_toBottomOf="@id/cardViewCerca">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textViewContactanosTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="Contactanos"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewContactanosSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="Comunícate con nosotros"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
 
         <Button
             android:id="@+id/btnAbrirUrl"
