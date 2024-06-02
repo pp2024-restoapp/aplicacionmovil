@@ -324,15 +324,21 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         datePickerFragment.dateListener = new DatePickerFragment.DateSelectionListener() {
             @Override
             public void onDateSelected(int year, int month, int day) {
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year, month, day);
 
-                selectedYear = year;
-                selectedMonth = month;
-                selectedDay = day;
-                showTimePickerDialog();
+                Calendar currentDate = Calendar.getInstance();
+
+                if (selectedDate.before(currentDate)) {
+                    Toast.makeText(getContext(), "Debe seleccionar una fecha futura", Toast.LENGTH_SHORT).show();
+                } else {
+                    selectedYear = year;
+                    selectedMonth = month;
+                    selectedDay = day;
+                    showTimePickerDialog();
+                }
             }
         };
-
-
     }
 
     private void actualizarListaReservas() {
@@ -343,6 +349,8 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         reservationBD.borrar(reservationId);
         actualizarListaReservas();
     }
+
+
 
     private void showTimePickerDialog() {
         TimePickerFragment timePickerFragment = new TimePickerFragment();
