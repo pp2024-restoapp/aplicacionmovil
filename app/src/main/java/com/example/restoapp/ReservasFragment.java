@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ReservasFragment extends Fragment implements DatePickerFragment.DateSelectionListener, TimePickerFragment.TimeSelectionListener, ReservationAdapter.Listener {
+public class ReservasFragment extends Fragment implements DatePickerFragment.DateSelectionListener, TimePickerFragment.TimeSelectionListener, ReservationAdapter.Listener{
     private ListView listView;
     private ArrayList<Integer> idReserve;
     private String userUid;
@@ -97,7 +97,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         botonAgregarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarDialogAgregarReserva();
+                mostrarDialogAgregarReserva(0, null);
             }
         });
 
@@ -142,7 +142,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
 
     }
 
-    private void mostrarDialogAgregarReserva() {
+    private void mostrarDialogAgregarReserva(int id, Reservation reserva) {
         // Inflar el diseño del diálogo
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reservation, null);
 
@@ -303,12 +303,28 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
                 String dateAndTime = String.format("%04d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
 
                 Date createdDate = new Date();
+                if (id ==0 ){
                 Reservation newReservation = new Reservation(0, userUid, numberOfPeople, dateAndTime, createdDate,
                         typeOfReservation, selectedTable, observacion, "Pendiente");
 
                 reservationBD.agregar(newReservation);
                 actualizarListaReservas();
                 dialog.dismiss();
+                }
+                else{
+                    reserva.setNumber_of_people(numberOfPeople);
+                    reserva.setDateAndTime(dateAndTime);
+                    reserva.setCreated(createdDate);
+                    reserva.setType(typeOfReservation);
+                    reserva.setTable(selectedTable);
+                    reserva.setObservations(observacion);
+                    reserva.setStatus("Pendiente");
+                    reservationBD.actualizar(id, reserva );
+                    actualizarListaReservas();
+                    dialog.dismiss();
+                    }
+
+
             }
         });
 
@@ -371,6 +387,10 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
     }
 
 
-
-}
+    @Override
+    public void onReservationEdit(Reservation reservation) {
+        // Muestra el diálogo para editar la reserva y pasa la reserva seleccionada
+        mostrarDialogAgregarReserva(reservation.getId(), reservation);
+    }
+    }
 
