@@ -102,8 +102,8 @@
     <string name="id">Id:</string>
     <string name="tipo">Tipo:</string>
     <string name="reservar">Reservar</string>
-    <string name="explora_mesas">Explora las mesas que tenemos disponibles</string>
-    <string name="cerca">Cerca</string>
+    <string name="explora_mesas">Hace tu reserva aca!</string>
+    <string name="cerca">Cerca tuyo</string>
     <string name="sucursales_cerca">Explora las sucursales más cercanas</string>
     <string name="contactanos">Contactanos</string>
     <string name="comunicate">Comunícate con nosotros</string>
