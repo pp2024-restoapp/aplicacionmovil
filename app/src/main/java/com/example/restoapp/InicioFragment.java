@@ -1,5 +1,3 @@
-// InicioFragment.java
-
 package com.example.restoapp;
 
 import android.annotation.SuppressLint;
@@ -16,13 +14,13 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -38,6 +36,7 @@ public class InicioFragment extends Fragment {
     private TextView textViewNombre;
 
     public InicioFragment() {
+        // Required empty public constructor
     }
 
     public static InicioFragment newInstance() {
@@ -47,6 +46,7 @@ public class InicioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
 
         textViewNombre = view.findViewById(R.id.textView8); // Obtén el TextView de tu layout
@@ -65,8 +65,9 @@ public class InicioFragment extends Fragment {
             }
         });
 
-        ImageButton imageButton3 = view.findViewById(R.id.imageButton3);
-        imageButton3.setOnClickListener(new View.OnClickListener() {
+        // CardView for "Cerca" section
+        CardView cardViewCerca = view.findViewById(R.id.cardViewCerca);
+        cardViewCerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), BranchActivity.class);
@@ -74,8 +75,9 @@ public class InicioFragment extends Fragment {
             }
         });
 
-        ImageButton imageButton4 = view.findViewById(R.id.imageButton4);
-        imageButton4.setOnClickListener(new View.OnClickListener() {
+        // CardView for "Contactanos" section
+        CardView cardViewContactanos = view.findViewById(R.id.cardViewContactanos);
+        cardViewContactanos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), activity_redes.class);
@@ -83,7 +85,7 @@ public class InicioFragment extends Fragment {
             }
         });
 
-        // inicio { visitar restoApp web }
+        // Button to open URL
         Button btnAbrirUrl = view.findViewById(R.id.btnAbrirUrl);
         btnAbrirUrl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,14 +95,17 @@ public class InicioFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        // fin { visitar restoApp web }
 
+        // Get NavController
         NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
-        ImageButton imageButton = view.findViewById(R.id.imageButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+
+        // CardView for "Reservar" section
+        CardView cardViewReservar = view.findViewById(R.id.cardViewReservar);
+        cardViewReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Navigate to the reservations fragment
                 navController.navigate(R.id.page_reservas);
             }
         });
@@ -126,7 +131,8 @@ public class InicioFragment extends Fragment {
 
             if (cursor != null && cursor.moveToFirst()) {
                 @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
-                textViewNombre.setText("¡Hola " + nombre +"!");
+
+                textViewNombre.setText("¡Hola " + nombre + "!");
                 cursor.close();
             } else {
                 textViewNombre.setText("Usuario no encontrado");
