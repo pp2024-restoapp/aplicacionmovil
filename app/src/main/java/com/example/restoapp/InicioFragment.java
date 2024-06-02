@@ -1,12 +1,14 @@
+// InicioFragment.java
+
 package com.example.restoapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,16 +19,25 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class InicioFragment extends Fragment {
 
     ViewFlipper v_flipper;
     int[] images = {R.drawable.red_bebidas, R.drawable.red_postres, R.drawable.red_ensalada, R.drawable.red_principal, R.drawable.red_hamburguesas};
 
-    public InicioFragment() {
+    private TextView textViewNombre;
 
+    public InicioFragment() {
     }
 
     public static InicioFragment newInstance() {
@@ -36,23 +47,19 @@ public class InicioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
 
-        v_flipper = view.findViewById(R.id.v_flipper);
+        textViewNombre = view.findViewById(R.id.textView8); // Obtén el TextView de tu layout
 
+        v_flipper = view.findViewById(R.id.v_flipper);
 
         for (int image : images) {
             flipperImages(image);
         }
 
-
         v_flipper.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), CategorizeActivity.class);
                 startActivity(intent);
             }
@@ -62,9 +69,7 @@ public class InicioFragment extends Fragment {
         imageButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), BranchActivity.class);
-
                 startActivity(intent);
             }
         });
@@ -73,58 +78,67 @@ public class InicioFragment extends Fragment {
         imageButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), activity_redes.class);
-
                 startActivity(intent);
             }
         });
 
-
-
         // inicio { visitar restoApp web }
-
-        // Encuentra el botón por su ID
         Button btnAbrirUrl = view.findViewById(R.id.btnAbrirUrl);
-
-        // Configuramos el evento OnClickListener
         btnAbrirUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // URL que deseamos abrir
                 String url = "https://github.com/pp2024-restoapp";
-
-                // Crea un Intent con la URL
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-
-                // Inicia la actividad del navegador
                 startActivity(intent);
             }
         });
-
         // fin { visitar restoApp web }
 
-
-        // Obtener el NavController
         NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
-
-        // Configurar el OnClickListener para la imagen de reservar
         ImageButton imageButton = view.findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navegar al fragmento de reservas
                 navController.navigate(R.id.page_reservas);
             }
         });
 
+        showUserData(); // Llama al método para mostrar los datos del usuario
 
         return view;
     }
 
-    public void flipperImages(int image) {
+    private void showUserData() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
 
+            DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            Cursor cursor = db.query(DatabaseHelper.TABLE_USERS,
+                    new String[]{DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_LASTNAME},
+                    DatabaseHelper.COLUMN_UID + "=?",
+                    new String[]{userId},
+                    null, null, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+                textViewNombre.setText("¡Hola " + nombre +"!");
+                cursor.close();
+            } else {
+                textViewNombre.setText("Usuario no encontrado");
+            }
+
+            db.close();
+        } else {
+            Log.e("InicioFragment", "El usuario no está autenticado");
+        }
+    }
+
+    public void flipperImages(int image) {
         LinearLayout linearLayout = new LinearLayout(getContext());
         LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -142,10 +156,7 @@ public class InicioFragment extends Fragment {
         );
         imageView.setLayoutParams(imageViewParams);
 
-
         linearLayout.addView(imageView);
-
-
         v_flipper.addView(linearLayout);
         v_flipper.setAutoStart(true);
         v_flipper.setFlipInterval(3000);
@@ -159,11 +170,9 @@ public class InicioFragment extends Fragment {
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-
                 Toast.makeText(getActivity(), "Haga clic en su plato favorito!", Toast.LENGTH_SHORT).show();
                 break;
             case MotionEvent.ACTION_UP:
-
                 break;
         }
         return false;
