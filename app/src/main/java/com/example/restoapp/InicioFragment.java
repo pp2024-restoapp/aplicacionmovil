@@ -1,12 +1,12 @@
 package com.example.restoapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,20 +14,29 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class InicioFragment extends Fragment {
 
     ViewFlipper v_flipper;
     int[] images = {R.drawable.red_bebidas, R.drawable.red_postres, R.drawable.red_ensalada, R.drawable.red_principal, R.drawable.red_hamburguesas};
 
-    public InicioFragment() {
+    private TextView textViewNombre;
 
+    public InicioFragment() {
+        // Required empty public constructor
     }
 
     public static InicioFragment newInstance() {
@@ -39,6 +48,8 @@ public class InicioFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
+
+        textViewNombre = view.findViewById(R.id.textView8); // Obtén el TextView de tu layout
 
         v_flipper = view.findViewById(R.id.v_flipper);
 
@@ -99,7 +110,38 @@ public class InicioFragment extends Fragment {
             }
         });
 
+        showUserData(); // Llama al método para mostrar los datos del usuario
+
         return view;
+    }
+
+    private void showUserData() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+
+            DatabaseHelper dbHelper = new DatabaseHelper(getContext());
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            Cursor cursor = db.query(DatabaseHelper.TABLE_USERS,
+                    new String[]{DatabaseHelper.COLUMN_NAME, DatabaseHelper.COLUMN_LASTNAME},
+                    DatabaseHelper.COLUMN_UID + "=?",
+                    new String[]{userId},
+                    null, null, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+
+                textViewNombre.setText("¡Hola " + nombre + "!");
+                cursor.close();
+            } else {
+                textViewNombre.setText("Usuario no encontrado");
+            }
+
+            db.close();
+        } else {
+            Log.e("InicioFragment", "El usuario no está autenticado");
+        }
     }
 
     public void flipperImages(int image) {
