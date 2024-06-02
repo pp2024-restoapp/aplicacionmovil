@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import androidx.cardview.widget.CardView;
 
 public class InicioFragment extends Fragment {
 
@@ -41,90 +42,67 @@ public class InicioFragment extends Fragment {
 
         v_flipper = view.findViewById(R.id.v_flipper);
 
-
         for (int image : images) {
             flipperImages(image);
         }
 
-
         v_flipper.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), CategorizeActivity.class);
                 startActivity(intent);
             }
         });
 
-        ImageButton imageButton3 = view.findViewById(R.id.imageButton3);
-        imageButton3.setOnClickListener(new View.OnClickListener() {
+        // CardView for "Cerca" section
+        CardView cardViewCerca = view.findViewById(R.id.cardViewCerca);
+        cardViewCerca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), BranchActivity.class);
-
                 startActivity(intent);
             }
         });
 
-        ImageButton imageButton4 = view.findViewById(R.id.imageButton4);
-        imageButton4.setOnClickListener(new View.OnClickListener() {
+        // CardView for "Contactanos" section
+        CardView cardViewContactanos = view.findViewById(R.id.cardViewContactanos);
+        cardViewContactanos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), activity_redes.class);
-
                 startActivity(intent);
             }
         });
 
-
-
-        // inicio { visitar restoApp web }
-
-        // Encuentra el botón por su ID
+        // Button to open URL
         Button btnAbrirUrl = view.findViewById(R.id.btnAbrirUrl);
-
-        // Configuramos el evento OnClickListener
         btnAbrirUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // URL que deseamos abrir
                 String url = "https://github.com/pp2024-restoapp";
-
-                // Crea un Intent con la URL
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-
-                // Inicia la actividad del navegador
                 startActivity(intent);
             }
         });
 
-        // fin { visitar restoApp web }
-
-
-        // Obtener el NavController
+        // Get NavController
         NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
 
-        // Configurar el OnClickListener para la imagen de reservar
-        ImageButton imageButton = view.findViewById(R.id.imageButton);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        // CardView for "Reservar" section
+        CardView cardViewReservar = view.findViewById(R.id.cardViewReservar);
+        cardViewReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navegar al fragmento de reservas
+                // Navigate to the reservations fragment
                 navController.navigate(R.id.page_reservas);
             }
         });
-
 
         return view;
     }
 
     public void flipperImages(int image) {
-
         LinearLayout linearLayout = new LinearLayout(getContext());
         LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -142,10 +120,7 @@ public class InicioFragment extends Fragment {
         );
         imageView.setLayoutParams(imageViewParams);
 
-
         linearLayout.addView(imageView);
-
-
         v_flipper.addView(linearLayout);
         v_flipper.setAutoStart(true);
         v_flipper.setFlipInterval(3000);
@@ -159,11 +134,9 @@ public class InicioFragment extends Fragment {
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-
                 Toast.makeText(getActivity(), "Haga clic en su plato favorito!", Toast.LENGTH_SHORT).show();
                 break;
             case MotionEvent.ACTION_UP:
-
                 break;
         }
         return false;

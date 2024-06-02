@@ -92,46 +92,198 @@
             app:layout_constraintTop_toBottomOf="@id/v_flipper" />
 
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="349dp"
-            android:layout_height="94dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_button_2"
-            android:contentDescription="@string/boton_para_reservar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView11"
-            app:srcCompat="@drawable/reservar" />
 
-        <ImageButton
-            android:id="@+id/imageButton3"
+
+        <!-- CardView de "Reservar"  -->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewReservar"
             android:layout_width="346dp"
             android:layout_height="89dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/rounded_button_2"
-            android:contentDescription="@string/boton_para_busqueda"
+            app:contentPadding="10dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/naranja_suave"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageButton"
-            app:srcCompat="@drawable/cerca" />
+            app:layout_constraintTop_toBottomOf="@id/textView11">
 
-        <ImageButton
-            android:id="@+id/imageButton4"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- TextViews -->
+                <TextView
+                    android:id="@+id/textViewReservarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="@string/reservar"
+                    android:textColor="@color/principal_naranja"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewReservarSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="@string/explora_mesas"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewReservarTitle"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!-- ImageView -->
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_reserva"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="11dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <!-- CardView de "Cerca"  -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewCerca"
+            android:layout_width="346dp"
+            android:layout_height="89dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="24dp"
+            app:contentPadding="10dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/naranja_suave"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardViewReservar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- TextViews -->
+                <TextView
+                    android:id="@+id/textViewCercaTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="@string/cerca"
+                    android:textColor="@color/principal_naranja"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewCercaSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="@string/sucursales_cerca"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewCercaTitle"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!-- ImageView -->
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_cerca"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="11dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <!-- CardView de "Contactanos" -->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewContactanos"
             android:layout_width="351dp"
-            android:layout_height="87dp"
+            android:layout_height="89dp"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_button_2"
-            android:contentDescription="@string/boton_para_contactos"
+            app:contentPadding="10dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/naranja_suave"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton3"
-            app:srcCompat="@drawable/contactanos" />
+            app:layout_constraintTop_toBottomOf="@id/cardViewCerca">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- TextViews -->
+                <TextView
+                    android:id="@+id/textViewContactanosTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="@string/contactanos"
+                    android:textColor="@color/principal_naranja"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewContactanosSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poetsenone_regular"
+                    android:text="@string/comunicate"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewContactanosTitle"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!-- ImageView -->
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_contacto"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="11dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
 
         <Button
             android:id="@+id/btnAbrirUrl"
