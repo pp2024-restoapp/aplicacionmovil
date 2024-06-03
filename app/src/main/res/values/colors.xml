@@ -8,5 +8,6 @@
     <color name="celeste">#2271B3</color>
     <color name="gris">#666666</color>
     <color name="naranja_suave">#FCC598</color>
+    <color name="colorPrimary">#6200EE</color>
 
 </resources>
