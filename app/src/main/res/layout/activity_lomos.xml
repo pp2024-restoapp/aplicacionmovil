@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="Carta de Lomos"
             android:fontFamily="@font/poetsenone_regular"
-            android:textSize="24sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginStart="8dp"
             android:layout_gravity="center_vertical" />
