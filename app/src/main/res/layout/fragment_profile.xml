@@ -71,7 +71,7 @@
         android:fontFamily="@font/poetsenone_regular"
         android:text="Hola"
         android:textColor="#000000"
-        android:textSize="14sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,10 +87,10 @@
         android:text="@string/correo_ejemplo"
         android:textColor="#000000"
         android:textSize="14sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/change_image_button" />
+        app:layout_constraintTop_toBottomOf="@id/textViewName4" />
+
 
 
     <EditText
