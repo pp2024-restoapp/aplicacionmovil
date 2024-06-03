@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -25,6 +26,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import es.dmoral.toasty.Toasty;
 
 public class ProfileFragment extends Fragment {
 
@@ -123,12 +126,12 @@ public class ProfileFragment extends Fragment {
                 @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
                 @SuppressLint("Range") String apellido = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_LASTNAME));
 
-                textViewNombre.setText("Nombre: "+ nombre + " " + apellido);
+                textViewNombre.setText( nombre + " " + apellido);
 
                 cursor.close();
             }
 
-            textViewEmail.setText("Email: " + userEmail);
+            textViewEmail.setText( userEmail);
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("Email", userEmail);
@@ -152,14 +155,17 @@ public class ProfileFragment extends Fragment {
             values.put(DatabaseHelper.COLUMN_NAME, newName);
             values.put(DatabaseHelper.COLUMN_LASTNAME, newLastName);
 
+
             int rowsUpdated = db.update(DatabaseHelper.TABLE_USERS, values, DatabaseHelper.COLUMN_UID + "=?", new String[]{userId});
 
             if (rowsUpdated > 0) {
-                textViewNombre.setText("Nombre: " + newName + " " + newLastName);
+                textViewNombre.setText(newName + " " + newLastName);
                 Log.d("ProfileFragment", "Datos actualizados correctamente");
 
                 editTextName.setText("");
                 editTextLastName.setText("");
+                Toasty.success(requireContext(), "Datos cambiados con éxito", Toast.LENGTH_SHORT).show();
+
 
             } else {
                 Log.e("ProfileFragment", "Error al actualizar los datos");
