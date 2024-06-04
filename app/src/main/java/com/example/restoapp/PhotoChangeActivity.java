@@ -18,7 +18,7 @@ public class PhotoChangeActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_PICK = 1;
     private ImageView imageselect;
     private Uri selectedImageUri;
-
+    private int selectedImageResource;
     private ImageView btn_atras;
     private Button confirmarBtn;
 
@@ -41,98 +41,67 @@ public class PhotoChangeActivity extends AppCompatActivity {
         btn_atras = findViewById(R.id.imageButton2);
         confirmarBtn = findViewById(R.id.confirmarBtn);
 
-        // Configura un OnClickListener para imageView3
-        imageView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Establece la imagen de imageselect según la imagen seleccionada
-                imageselect.setImageResource(R.drawable.image1);
-            }
+        // Configura los OnClickListener para los ImageView
+        imageView3.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image1);
+            selectedImageResource = R.drawable.image1;
         });
-
-        // Repite el mismo patrón para los otros ImageView
-        imageView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageselect.setImageResource(R.drawable.image2);
-            }
+        imageView4.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image2);
+            selectedImageResource = R.drawable.image2;
         });
-
-        imageView5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageselect.setImageResource(R.drawable.image3);
-            }
+        imageView5.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image3);
+            selectedImageResource = R.drawable.image3;
         });
-
-        imageView6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageselect.setImageResource(R.drawable.image4);
-            }
+        imageView6.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image4);
+            selectedImageResource = R.drawable.image4;
         });
-
-        imageView7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageselect.setImageResource(R.drawable.image5);
-            }
+        imageView7.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image5);
+            selectedImageResource = R.drawable.image5;
         });
-
-        imageView8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageselect.setImageResource(R.drawable.image6);
-            }
+        imageView8.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image6);
+            selectedImageResource = R.drawable.image6;
         });
-
-        imageView9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageselect.setImageResource(R.drawable.image8);
-            }
+        imageView9.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image8);
+            selectedImageResource = R.drawable.image8;
         });
-
-        imageView10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageselect.setImageResource(R.drawable.image9);
-            }
+        imageView10.setOnClickListener(v -> {
+            imageselect.setImageResource(R.drawable.image9);
+            selectedImageResource = R.drawable.image9;
         });
 
         ImageButton selectImageBtn = findViewById(R.id.selectImageBtn);
-
-        selectImageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Abre la galería para seleccionar una imagen.
-                Intent pickImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(pickImage, REQUEST_IMAGE_PICK);
-            }
+        selectImageBtn.setOnClickListener(v -> {
+            // Abre la galería para seleccionar una imagen.
+            Intent pickImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(pickImage, REQUEST_IMAGE_PICK);
         });
 
         confirmarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent returnIntent = new Intent();
                 if (selectedImageUri != null) {
                     // Envía la URI de la imagen de regreso a la actividad anterior (ProfileFragment)
-                    Intent returnIntent = new Intent();
                     returnIntent.putExtra("imageUri", selectedImageUri.toString());
-                    setResult(RESULT_OK, returnIntent);
-                    finish(); // Cierra la actividad actual
+                } else if (selectedImageResource != 0) {
+                    // Envía el recurso de la imagen seleccionada a la actividad anterior (ProfileFragment)
+                    returnIntent.putExtra("imageResource", selectedImageResource);
                 }
+                setResult(RESULT_OK, returnIntent);
+                finish(); // Cierra la actividad actual
             }
         });
 
-        btn_atras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(PhotoChangeActivity.this, ProfileFragment.class);
-                startActivity(intent);
-            }
+        btn_atras.setOnClickListener(v -> {
+            Intent intent = new Intent(PhotoChangeActivity.this, ProfileFragment.class);
+            startActivity(intent);
         });
-
     }
 
     @Override
@@ -149,6 +118,7 @@ public class PhotoChangeActivity extends AppCompatActivity {
 
                     // Establece la imagen decodificada en el ImageView "imageselect"
                     imageselect.setImageBitmap(selectedImage);
+                    selectedImageResource = 0; // Reset selectedImageResource
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -156,3 +126,4 @@ public class PhotoChangeActivity extends AppCompatActivity {
         }
     }
 }
+
