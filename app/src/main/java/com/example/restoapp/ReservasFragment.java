@@ -18,19 +18,24 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.restoapp.controladores.ReservationBD;
 import com.example.restoapp.modelos.Reservation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ReservasFragment extends Fragment implements DatePickerFragment.DateSelectionListener, TimePickerFragment.TimeSelectionListener, ReservationAdapter.Listener {
+public class ReservasFragment extends Fragment implements DatePickerFragment.DateSelectionListener, TimePickerFragment.TimeSelectionListener, ReservationAdapter.Listener{
     private ListView listView;
     private ArrayList<Integer> idReserve;
+    private String userUid;
     private ReservationBD reservationBD;
     private Context context;
     private int selectedYear;
@@ -41,18 +46,34 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
     private ReservationAdapter adapter;
     private List<Reservation> reservationList;
     private TextView noReservationsText;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        reservationBD = new ReservationBD(context);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            userUid = currentUser.getUid();
+        } else {
+            // El usuario no está autenticado, maneja este caso según lo necesites
+            // Por ejemplo, redirecciona a la pantalla de inicio de sesión
+        }
+        reservationBD = new ReservationBD(context, userUid);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = requireContext();
-        reservationBD = new ReservationBD(context);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            userUid = currentUser.getUid();
+        } else {
+            // El usuario no está autenticado, maneja este caso según lo necesites
+            // Por ejemplo, redirecciona a la pantalla de inicio de sesión
+        }
+
+        reservationBD = new ReservationBD(context, userUid);
         reservationList = new ArrayList<>();
     }
 
@@ -62,7 +83,8 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         listView = view.findViewById(R.id.reservation_list);
         noReservationsText = view.findViewById(R.id.noReservationsText);
 
-        idReserve = new ArrayList<Integer>();
+
+        idReserve = new ArrayList<>();
         reservationList = new ArrayList<>();
         adapter = new ReservationAdapter(requireActivity(), R.layout.reservation_item, reservationList);
         adapter.setListener(this);
@@ -75,7 +97,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         botonAgregarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarDialogAgregarReserva();
+                mostrarDialogAgregarReserva(0, null);
             }
         });
 
@@ -120,12 +142,42 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
 
     }
 
-    private void mostrarDialogAgregarReserva() {
+    private void mostrarDialogAgregarReserva(int id, Reservation reserva) {
+        // Inflar el diseño del diálogo
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reservation, null);
+
+        // Recuperar las mesas seleccionadas de la base de datos
+        List<Integer> mesasSeleccionadas = reservationBD.obtenerMesasSeleccionadas();
+
+        // Iterar sobre cada mesa en el diseño del diálogo
+        for (int i = 1; i <= 12; i++) {
+            String cardViewId = "mesa" + i + "Container";
+            int resId = getResources().getIdentifier(cardViewId, "id", requireContext().getPackageName());
+            CardView cardView = dialogView.findViewById(resId);
+
+            if (mesasSeleccionadas.contains(i)) {
+                if (cardView != null) {
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.gris));
+                    Log.d("MesasSeleccionadas", "La mesa " + i + " está seleccionada.");
+                }
+            } else {
+                if (cardView != null) {
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.principal_naranja)); // Color naranja para no seleccionadas
+                }
+            }
+        }
+
         Dialog dialog = new Dialog(requireContext());
-
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_add_reservation);
-
+        dialog.setContentView(dialogView); // Establecer el diseño inflado en el diálogo
+        TextView btnClose = dialog.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ReservasFragment", "Close button clicked");
+                dialog.dismiss();
+            }
+        });
         Button selectDateTimeButton = dialog.findViewById(R.id.dateTimeButton);
 
         selectDateTimeButton.setOnClickListener(new View.OnClickListener() {
@@ -251,24 +303,31 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
                 String dateAndTime = String.format("%04d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
 
                 Date createdDate = new Date();
-                Reservation newReservation = new Reservation(0, numberOfPeople, dateAndTime, createdDate,
+                if (id ==0 ){
+                Reservation newReservation = new Reservation(0, userUid, numberOfPeople, dateAndTime, createdDate,
                         typeOfReservation, selectedTable, observacion, "Pendiente");
 
                 reservationBD.agregar(newReservation);
                 actualizarListaReservas();
                 dialog.dismiss();
+                }
+                else{
+                    reserva.setNumber_of_people(numberOfPeople);
+                    reserva.setDateAndTime(dateAndTime);
+                    reserva.setCreated(createdDate);
+                    reserva.setType(typeOfReservation);
+                    reserva.setTable(selectedTable);
+                    reserva.setObservations(observacion);
+                    reserva.setStatus("Pendiente");
+                    reservationBD.actualizar(id, reserva );
+                    actualizarListaReservas();
+                    dialog.dismiss();
+                    }
+
+
             }
         });
 
-
-
-        TextView btnClose = dialog.findViewById(R.id.btnClose);
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
 
         dialog.show();
     }
@@ -281,15 +340,21 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         datePickerFragment.dateListener = new DatePickerFragment.DateSelectionListener() {
             @Override
             public void onDateSelected(int year, int month, int day) {
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year, month, day);
 
-                selectedYear = year;
-                selectedMonth = month;
-                selectedDay = day;
-                showTimePickerDialog();
+                Calendar currentDate = Calendar.getInstance();
+
+                if (selectedDate.before(currentDate)) {
+                    Toast.makeText(getContext(), "Debe seleccionar una fecha futura", Toast.LENGTH_SHORT).show();
+                } else {
+                    selectedYear = year;
+                    selectedMonth = month;
+                    selectedDay = day;
+                    showTimePickerDialog();
+                }
             }
         };
-
-
     }
 
     private void actualizarListaReservas() {
@@ -300,6 +365,8 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         reservationBD.borrar(reservationId);
         actualizarListaReservas();
     }
+
+
 
     private void showTimePickerDialog() {
         TimePickerFragment timePickerFragment = new TimePickerFragment();
@@ -326,4 +393,12 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         selectedMinute = minute;
 
     }
-}
+
+
+    @Override
+    public void onReservationEdit(Reservation reservation) {
+        // Muestra el diálogo para editar la reserva y pasa la reserva seleccionada
+        mostrarDialogAgregarReserva(reservation.getId(), reservation);
+    }
+    }
+

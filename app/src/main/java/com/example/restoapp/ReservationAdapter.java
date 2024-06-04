@@ -13,6 +13,8 @@
 
     import com.example.restoapp.controladores.ReservationBD;
     import com.example.restoapp.modelos.Reservation;
+    import com.google.firebase.auth.FirebaseAuth;
+    import com.google.firebase.auth.FirebaseUser;
 
     import java.text.SimpleDateFormat;
     import java.util.Date;
@@ -21,22 +23,37 @@
     public class ReservationAdapter extends ArrayAdapter<Reservation> {
         private int layoutResourceId;
         private ReservationBD reservationBD;
+        private String userUid;
         private Listener listener; // Listener para notificar eventos
+
+
 
         public interface Listener {
             void onReservationDeleted(int reservationId);
+            void onReservationEdit(Reservation reservation);
         }
+
+
 
         public ReservationAdapter(Context context, int layoutResourceId, List<Reservation> data) {
             super(context, layoutResourceId, data);
             this.layoutResourceId = layoutResourceId;
-            this.reservationBD = new ReservationBD(context);
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+            if (currentUser != null) {
+                userUid = currentUser.getUid();
+            } else {
+                // El usuario no está autenticado, maneja este caso según lo necesites
+                // Por ejemplo, redirecciona a la pantalla de inicio de sesión
+            }
+            reservationBD = new ReservationBD(context, userUid);
         }
 
         // Método para establecer el listener
         public void setListener(Listener listener) {
             this.listener = listener;
         }
+
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -57,6 +74,7 @@
                 holder.textViewObservacion = row.findViewById(R.id.textViewObservacion);
                 holder.textViewEstado = row.findViewById(R.id.textViewEstado);
                 holder.trash = row.findViewById(R.id.trash); // ImageView del ícono "trash"
+                holder.edit = row.findViewById(R.id.edit);
 
                 row.setTag(holder);
             } else {
@@ -97,6 +115,15 @@
                 }
             });
 
+            holder.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onReservationEdit(reservation);
+                    }
+                }
+            });
+
             return row;
         }
 
@@ -126,6 +153,8 @@
 
         static class ReservationHolder {
             public ImageView trash;
+
+            public ImageView edit;
             TextView textViewId;
             TextView textViewPersonas;
             TextView textViewFecha;

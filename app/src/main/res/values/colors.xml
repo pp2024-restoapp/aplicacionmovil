@@ -5,6 +5,9 @@
     <color name="TRANSPARENTE">#00FF0000</color>
     <color name="principal_naranja">#F26333</color>
     <color name="secundario_naranja">#F4764B</color>
-
+    <color name="celeste">#2271B3</color>
+    <color name="gris">#666666</color>
+    <color name="naranja_suave">#FCC598</color>
+    <color name="colorPrimary">#6200EE</color>
 
 </resources>
