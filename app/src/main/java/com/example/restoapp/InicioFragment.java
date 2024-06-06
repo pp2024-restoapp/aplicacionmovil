@@ -105,7 +105,7 @@ public class InicioFragment extends Fragment {
         cardViewReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to the reservations fragment
+                // Navegar a fragment_reservas
                 navController.navigate(R.id.page_reservas);
             }
         });
