@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import es.dmoral.toasty.Toasty;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -269,7 +270,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
                     numberOfPeople = Integer.parseInt(numberOfPeopleEditText.getText().toString());
                     selectedTable = Integer.parseInt(selectTableEditText.getText().toString());
                 } catch (NumberFormatException e) {
-                    Toast.makeText(getContext(), "Ingrese valores numéricos válidos", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(getContext(), "Ingrese valores numéricos válidos", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
