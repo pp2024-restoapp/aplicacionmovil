@@ -36,9 +36,6 @@ public class ProfileFragment extends Fragment {
     private TextView textViewNombre;
     private Button botonCerrarSesion;
     private SharedPreferences sharedPreferences;
-    private EditText editTextName;
-    private EditText editTextLastName;
-    private Button btnUpdate;
     private Uri selectedImageUri;
 
     @Override
@@ -49,16 +46,11 @@ public class ProfileFragment extends Fragment {
         textViewEmail = view.findViewById(R.id.textViewName2);
         botonCerrarSesion = view.findViewById(R.id.button5);
         textViewNombre = view.findViewById(R.id.textViewName4);
-        editTextName = view.findViewById(R.id.editTextText);
-        editTextLastName = view.findViewById(R.id.editTextText2);
-        btnUpdate = view.findViewById(R.id.btnUpdate);
         sharedPreferences = requireActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE);
 
         botonCerrarSesion.setOnClickListener(v -> signOut());
         showUserData();
 
-        editTextName.setHint("Ingresa aquí tu nombre");
-        editTextLastName.setHint("Ingresa aquí tu apellido");
 
         Button changeImageButton = view.findViewById(R.id.change_image_button);
         changeImageButton.setOnClickListener(v -> {
@@ -66,7 +58,6 @@ public class ProfileFragment extends Fragment {
             startActivityForResult(intent, REQUEST_CODE_PHOTO_CHANGE);
         });
 
-        btnUpdate.setOnClickListener(v -> updateUserData());
 
         return view;
     }
@@ -112,13 +103,9 @@ public class ProfileFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
-            String newName = editTextName.getText().toString();
-            String newLastName = editTextLastName.getText().toString();
             DatabaseHelper dbHelper = new DatabaseHelper(getContext());
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(DatabaseHelper.COLUMN_NAME, newName);
-            values.put(DatabaseHelper.COLUMN_LASTNAME, newLastName);
             int rowsUpdated = db.update(DatabaseHelper.TABLE_USERS, values, DatabaseHelper.COLUMN_UID + "=?", new String[]{userId});
             if (rowsUpdated > 0) {
                 Toasty.success(requireContext(), "Datos actualizados correctamente", Toast.LENGTH_SHORT, true).show();
