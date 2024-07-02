@@ -18,6 +18,38 @@
         <activity
             android:name=".RecoverPassword"
             android:exported="false" />
+
+        <activity
+            android:name=".modelos.EnsaladasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.PrincipalesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.PastasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.BebidasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.PostresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.PizzasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.HamburguesasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.LomosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modelos.PromosActivity"
+            android:exported="false" />
+        <activity
+
+            android:name=".modelos.EntradaActivity"
+            android:exported="false" />
         <activity
             android:name=".CategorizeActivity"
             android:exported="false" />

@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import es.dmoral.toasty.Toasty;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -32,7 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class ReservasFragment extends Fragment implements DatePickerFragment.DateSelectionListener, TimePickerFragment.TimeSelectionListener, ReservationAdapter.Listener {
+public class ReservasFragment extends Fragment implements DatePickerFragment.DateSelectionListener, TimePickerFragment.TimeSelectionListener, ReservationAdapter.Listener{
     private ListView listView;
     private ArrayList<Integer> idReserve;
     private String userUid;
@@ -97,7 +98,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         botonAgregarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarDialogAgregarReserva();
+                mostrarDialogAgregarReserva(0, null);
             }
         });
 
@@ -142,7 +143,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
 
     }
 
-    private void mostrarDialogAgregarReserva() {
+    private void mostrarDialogAgregarReserva(int id, Reservation reserva) {
         // Inflar el diseño del diálogo
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_reservation, null);
 
@@ -269,7 +270,7 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
                     numberOfPeople = Integer.parseInt(numberOfPeopleEditText.getText().toString());
                     selectedTable = Integer.parseInt(selectTableEditText.getText().toString());
                 } catch (NumberFormatException e) {
-                    Toast.makeText(getContext(), "Ingrese valores numéricos válidos", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(getContext(), "Ingrese valores numéricos válidos", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -303,12 +304,28 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
                 String dateAndTime = String.format("%04d-%02d-%02d %02d:%02d", year, month, day, hour, minute);
 
                 Date createdDate = new Date();
+                if (id ==0 ){
                 Reservation newReservation = new Reservation(0, userUid, numberOfPeople, dateAndTime, createdDate,
                         typeOfReservation, selectedTable, observacion, "Pendiente");
 
                 reservationBD.agregar(newReservation);
                 actualizarListaReservas();
                 dialog.dismiss();
+                }
+                else{
+                    reserva.setNumber_of_people(numberOfPeople);
+                    reserva.setDateAndTime(dateAndTime);
+                    reserva.setCreated(createdDate);
+                    reserva.setType(typeOfReservation);
+                    reserva.setTable(selectedTable);
+                    reserva.setObservations(observacion);
+                    reserva.setStatus("Pendiente");
+                    reservationBD.actualizar(id, reserva );
+                    actualizarListaReservas();
+                    dialog.dismiss();
+                    }
+
+
             }
         });
 
@@ -324,15 +341,21 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         datePickerFragment.dateListener = new DatePickerFragment.DateSelectionListener() {
             @Override
             public void onDateSelected(int year, int month, int day) {
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year, month, day);
 
-                selectedYear = year;
-                selectedMonth = month;
-                selectedDay = day;
-                showTimePickerDialog();
+                Calendar currentDate = Calendar.getInstance();
+
+                if (selectedDate.before(currentDate)) {
+                    Toast.makeText(getContext(), "Debe seleccionar una fecha futura", Toast.LENGTH_SHORT).show();
+                } else {
+                    selectedYear = year;
+                    selectedMonth = month;
+                    selectedDay = day;
+                    showTimePickerDialog();
+                }
             }
         };
-
-
     }
 
     private void actualizarListaReservas() {
@@ -343,6 +366,8 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
         reservationBD.borrar(reservationId);
         actualizarListaReservas();
     }
+
+
 
     private void showTimePickerDialog() {
         TimePickerFragment timePickerFragment = new TimePickerFragment();
@@ -371,6 +396,10 @@ public class ReservasFragment extends Fragment implements DatePickerFragment.Dat
     }
 
 
-
-}
+    @Override
+    public void onReservationEdit(Reservation reservation) {
+        // Muestra el diálogo para editar la reserva y pasa la reserva seleccionada
+        mostrarDialogAgregarReserva(reservation.getId(), reservation);
+    }
+    }
 

@@ -148,10 +148,29 @@ public class ReservationBD extends SQLiteOpenHelper implements IReservationBD {
     }
 
     @Override
-    public void actualizar(int id, Reservation reserve) {
-        // Método necesario para actualizar una reserva, no implementado en esta solución
-    }
+    public void actualizar(int id, Reservation reserva) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
 
+        values.put("personas", reserva.getNumber_of_people());
+        values.put("fecha", reserva.getDateAndTime());
+        values.put("tipo", reserva.getType());
+        values.put("mesa", reserva.getTable());
+        values.put("observacion", reserva.getObservations());
+        values.put("estado", reserva.getStatus());
+
+        String whereClause = "_id = ?";
+        String[] whereArgs = {String.valueOf(id)};
+
+        int updatedRows = database.update(TABLE_RESERVATIONS, values, whereClause, whereArgs);
+        database.close();
+
+        if (updatedRows > 0) {
+            Log.d("Database", "Reserva actualizada con éxito. ID: " + id);
+        } else {
+            Log.e("Database", "Error al actualizar la reserva en la base de datos. ID: " + id);
+        }
+    }
     @Override
     public void borrar(int id) {
         SQLiteDatabase database = this.getWritableDatabase();

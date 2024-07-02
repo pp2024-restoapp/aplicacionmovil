@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modelos.HamburguesasActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPromos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F2F2"
+        android:clipToPadding="false"
+        android:padding="16dp" />
+
+
+    <LinearLayout
+        android:id="@+id/backButtonContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnAtras"
+            android:layout_width="58dp"
+            android:layout_height="54dp"
+            android:background="#F2F2F2"
+            android:contentDescription="@string/volver"
+            app:srcCompat="@drawable/volver"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/textViewCartaDePostres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carta Hamburguesas"
+            android:fontFamily="@font/poetsenone_regular"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+</RelativeLayout>
